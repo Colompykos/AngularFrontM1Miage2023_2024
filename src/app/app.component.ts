@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'assignment-app';
+
+  sidenavState:boolean=false;
+
+  toggleSideNav(e:any):void{
+        // console.log("clicked");
+        this.sidenavState=!this.sidenavState;
+        // console.log(this.sidenavState);
+  }
 }
