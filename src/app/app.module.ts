@@ -8,10 +8,12 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { AssignmentsComponent } from './assignments/assignments.component';
+import { RenduDirective } from './shared/rendu.directive';
 
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, AssignmentsComponent, RenduDirective],
   imports: [
     BrowserModule,
     AppRoutingModule,

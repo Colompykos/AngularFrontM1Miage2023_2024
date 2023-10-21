@@ -1,3 +1,6 @@
+
+<!-- Toolbar Part-->
+
 <mat-toolbar class="toolbar">
     <div class="left-part">
         <button mat-icon-button class="icon menu-icon" aria-label="Example icon-button with menu icon" (click)="toggleSideNav($event)">
@@ -13,6 +16,8 @@
         </button>
     </div>
 </mat-toolbar>
+
+<!-- Sidenav Part-->
 
 <mat-drawer-container class="sidenav-container">
     <mat-drawer mode="side" class="sidenav" [opened]="sidenavState">
@@ -41,6 +46,9 @@
     </mat-drawer>
     <mat-drawer-content class="sidenav-content">
   
+        <!-- The part where to add each component with routes -->
+        <!-- <router-outlet></router-outlet> -->
+        <app-assignments appRendu></app-assignments>
       <h3>Hiii how are you???</h3>
   
     </mat-drawer-content>
