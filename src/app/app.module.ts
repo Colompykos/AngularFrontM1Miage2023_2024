@@ -10,10 +10,21 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { AssignmentsComponent } from './assignments/assignments.component';
 import { RenduDirective } from './shared/rendu.directive';
+import { AddDevoirComponent } from './add-devoir/add-devoir.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import {MatDividerModule} from '@angular/material/divider';
+
+
+
 
 
 @NgModule({
-  declarations: [AppComponent, AssignmentsComponent, RenduDirective],
+  declarations: [AppComponent, AssignmentsComponent, RenduDirective, AddDevoirComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -22,6 +33,14 @@ import { RenduDirective } from './shared/rendu.directive';
     MatIconModule,
     MatButtonModule,
     MatSidenavModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    FormsModule,
+    CommonModule,
+    MatDividerModule,
+
   ], 
   providers: [],
   bootstrap: [AppComponent],
