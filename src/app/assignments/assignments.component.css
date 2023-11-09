@@ -1,0 +1,38 @@
+p{
+    margin: 10px 40px;
+}
+.form {
+    display:flex;
+    flex-direction: column;
+    margin:3rem 40rem;
+ }
+
+ .button-ajouter{
+    background-color:#f39a14;
+ }
+
+ .mat-subheader {
+    background-color: #e0e0e0; 
+    font-weight: bold;
+    padding-left: 1rem;
+    border-radius: 9px;
+
+  }
+
+  .container{
+   display: flex;
+   flex-direction: column;
+   margin-left: 1rem;
+  }
+
+  .btnajout{
+   align-self: flex-end;
+   margin: 1rem 2rem 0rem 0rem;
+   background-color:#f39a14;
+  }
+
+   .btnajout:hover{
+    background-color: rgb(187, 181, 181);
+    color:white !important;
+   }
+   

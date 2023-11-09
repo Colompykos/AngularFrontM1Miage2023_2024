@@ -1,0 +1,19 @@
+.checked-margin {
+margin: 0 10px;
+ font-family: Tilt;
+ font-size: 30px;
+ gap: 2rem;
+
+  }
+
+ .checkbox-content{
+    display: flex;
+    justify-content: space-between;
+ } 
+
+ .delete-assign{
+    background-color: #f39a14;
+    margin-left: 1rem;
+    margin-bottom: 0.5rem;
+    margin-right: 32px;
+ }

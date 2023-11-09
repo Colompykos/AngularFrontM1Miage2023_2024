@@ -4,10 +4,14 @@ p{
 .form {
     display:flex;
     flex-direction: column;
-    margin:3rem 40rem;
+    margin:3rem 35rem;
  }
 
  .button-ajouter{
     background-color:#f39a14;
  }
 
+ .mat-subheader {
+    background-color: #e0e0e0; 
+    font-weight: bold;
+  }
