@@ -17,3 +17,10 @@ margin: 0 10px;
     margin-bottom: 0.5rem;
     margin-right: 32px;
  }
+
+ .container{
+   margin: 0rem 1rem 0rem 1rem;
+   box-shadow: 12px 15px 17px -8px rgba(243,154,20,0.79);
+   -webkit-box-shadow: 12px 15px 17px -8px rgba(243,154,20,0.79);
+   -moz-box-shadow: 12px 15px 17px -8px rgba(243,154,20,0.79);
+  }

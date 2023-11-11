@@ -24,11 +24,11 @@
       <div class="sidenav-list">
         <button class="sidenav-element">
           <mat-icon class="icons">folder</mat-icon>
-          <a href="">Liste des devoirs</a>
+          <a routerLink="/home">Liste des devoirs</a>
         </button>
         <button class="sidenav-element">
           <mat-icon>add</mat-icon>
-          <a href="">Ajout d'un devoir</a>
+          <a routerLink="/add">Ajout d'un devoir</a>
         </button>
         <button class="sidenav-element">
           <mat-icon>edit</mat-icon>
@@ -47,9 +47,8 @@
     <mat-drawer-content class="sidenav-content">
   
         <!-- The part where to add each component with routes -->
-        <!-- <router-outlet></router-outlet> -->
+        <router-outlet></router-outlet>
       
-        <app-assignments></app-assignments>
 
 
   

@@ -20,13 +20,16 @@ p{
   }
 
   .container{
-   display: flex;
-   flex-direction: column;
    margin-left: 1rem;
   }
 
+  a{
+   display: flex;
+   justify-content: flex-end; 
+   text-decoration: none;
+  }
+
   .btnajout{
-   align-self: flex-end;
    margin: 1rem 2rem 0rem 0rem;
    background-color:#f39a14;
   }

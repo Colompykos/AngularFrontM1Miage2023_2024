@@ -19,7 +19,7 @@ export class AssignmentsComponent {
 
   assignementSelectionne!: Assignment;
 
-  formVisible = false;
+  // formVisible = false;
 
   assignments!:Assignment[]
   
@@ -63,23 +63,23 @@ export class AssignmentsComponent {
   }
 
   onAddAssignmentBtnClick() {
-    this.formVisible = true;
+    // this.formVisible = true;
   }
 
-  onNouvelAssignement(event: Assignment) {
-    // this.assignments.push(event);
-    this.assignmentsService.addAssignment(event)
-    .subscribe((message) => console.log(message));
+  // onNouvelAssignement(event: Assignment) {
+  //   // this.assignments.push(event);
+  //   this.assignmentsService.addAssignment(event)
+  //   .subscribe((message) => console.log(message));
 
-    this.formVisible=false;
+  //   // this.formVisible=false;
     
-  }
+  // }
 
   ondeletedAssignment(event:Assignment){
     this.assignments.forEach((item,index)=>{
       if(item===event) this.assignments.splice(index,1);
     });
-  this.assignementSelectionne = null
+  this.assignementSelectionne != null
   }
 
 }

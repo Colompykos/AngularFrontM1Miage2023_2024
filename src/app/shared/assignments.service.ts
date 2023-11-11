@@ -13,16 +13,19 @@ export class AssignmentsService {
   
   assignments:Assignment[] = [
     {
+      id:1,
       nom: 'Devoir Angular à rendre',
       dateDeRendu: new Date('2021-03-01'),
       rendu: true,
     },
     {
+      id:2,
       nom: 'Devoir Java à rendre',
       dateDeRendu: new Date('2023-03-05'),
       rendu: false,
     },
     {
+      id:3,
       nom: 'Devoir gestion de projet à rendre',
       dateDeRendu: new Date('2021-03-10'),
       rendu: false,
@@ -31,6 +34,16 @@ export class AssignmentsService {
 
   getAssignments(): Observable<Assignment[]>{
    return of(this.assignments); 
+  }
+
+  getNewId():number{
+    return this.assignments.length+1;
+  }
+
+  getAssignment(id:number):Observable<Assignment>{
+
+    return of (this.assignments.find(ass=>ass.id===id));
+
   }
 
   addAssignment(assignment:Assignment):Observable<string>{
