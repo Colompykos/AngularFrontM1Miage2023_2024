@@ -11,7 +11,7 @@
 
     <div class="checkbox-content">
       <mat-checkbox *ngIf="!assignmentTransmis.rendu" [disabled]="!this.authService.isAdmin" (click)="onAssignmentRendu()" class="checked-margin" [checked]="checked">Checked</mat-checkbox>
-        <button mat-button [disabled]="!this.authService.isAdmin" class="edit-assign" (click)="onClickEdit()" >Edit</button>
+        <button mat-button [disabled]="!this.authService.isAdmin" class="edit-assign" (click)="onClickEdit()" class="edit-elem">Edit</button>
       <button mat-button [disabled]="!this.authService.isAdmin" class="delete-assign" (click)="onDelete()">Delete Assignment</button>
     </div>
     </mat-card>

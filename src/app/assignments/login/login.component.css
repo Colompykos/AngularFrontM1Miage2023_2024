@@ -1,0 +1,21 @@
+.form {
+    display:flex;
+    flex-direction: column;
+    margin:7rem 35rem;
+ }
+
+ h3{
+    margin: 0 auto;
+    margin-bottom: 2rem;
+    font-family: Tilt;
+    font-size: 35px;
+ }
+
+ .button-log{
+    margin: 0 auto;
+    font-family:Tilt;
+    background-color:#f39a14;
+    font-size: 20px;
+    border-radius: 8px;
+    width: 11rem;
+ }

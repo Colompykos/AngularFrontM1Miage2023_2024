@@ -4,11 +4,23 @@ p{
 .form {
     display:flex;
     flex-direction: column;
-    margin:3rem 35rem;
+    margin:7rem 35rem;
+ }
+
+ h3{
+   margin: 0 auto;
+   margin-bottom: 2rem;
+   font-family: Tilt;
+   font-size: 35px;
  }
 
  .button-ajouter{
     background-color:#f39a14;
+    margin: 0 auto;
+    font-family:Tilt;
+    font-size: 20px;
+    border-radius: 8px;
+    width: 16rem;
  }
 
  .mat-subheader {

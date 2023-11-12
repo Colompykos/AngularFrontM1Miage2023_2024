@@ -11,12 +11,10 @@
         <button mat-icon-button class="icon home-icon" aria-label="Example icon-button with home icon" (click)="getHome()">
           <mat-icon class="icon">home</mat-icon>
         </button>
-        <button mat-icon-button class="icon connection-icon">
-          <mat-slide-toggle [(ngModel)]="authService.isAdmin || authService.loggedIn" [disabled]="!authService.isAdmin || !authService.loggedIn"></mat-slide-toggle>
-        </button>
         <button mat-icon-button class="icon account-icon" aria-label="Example icon-button with account_circle icon" (click)="getLog()">
           <mat-icon>account_circle</mat-icon>
         </button>
+          <mat-slide-toggle [(ngModel)]="authService.isAdmin || authService.loggedIn" [disabled]="!authService.isAdmin || !authService.loggedIn" class="slide connection-icon"></mat-slide-toggle>
         <button mat-icon-button class="icon logOut-icon" aria-label="Example icon-button with exit icon" (click)="LogOut()">
           <mat-icon>exit_to_app</mat-icon>
         </button>

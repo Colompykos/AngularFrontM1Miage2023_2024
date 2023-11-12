@@ -1,0 +1,28 @@
+.container{
+    display:flex;
+    flex-direction: column;
+    margin:7rem 35rem;
+    flex-direction: column;
+}
+
+form{
+    display:flex;
+    flex-direction: column;
+}
+
+h3{
+    margin: 2rem auto;
+    font-family: Tilt;
+    font-size: 35px;
+    text-align: center;
+ }
+
+ .btn-save{
+    margin: 0 auto;
+    font-family:Tilt;
+    background-color:#f39a14;
+    font-size: 20px;
+    border-radius: 8px;
+    width: 11rem;
+    color: black;
+ }

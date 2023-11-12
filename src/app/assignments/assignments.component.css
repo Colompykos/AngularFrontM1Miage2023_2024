@@ -1,3 +1,10 @@
+
+.title{
+   margin: 14rem auto;
+   font-family: Tilt;
+   font-size: 5.5rem;
+   text-align: center;
+ }
 p{
     margin: 10px 40px;
 }
@@ -12,10 +19,11 @@ p{
  }
 
  .mat-subheader {
-    background-color: #e0e0e0; 
+    background-color: rgba(206, 194, 194, 0.404); 
     font-weight: bold;
-    padding-left: 1rem;
     border-radius: 9px;
+    width: 12rem;
+    text-align: center;
 
   }
 
@@ -25,17 +33,24 @@ p{
 
   a{
    display: flex;
-   justify-content: flex-end; 
+   flex-direction: column;
    text-decoration: none;
   }
 
-  .btnajout{
-   margin: 1rem 2rem 0rem 0rem;
-   background-color:#f39a14;
-  }
-
-   .btnajout:hover{
+  
+  .btnajout:hover{
     background-color: rgb(187, 181, 181);
     color:white !important;
    }
+   
+   .btnadd-container{
+      display: flex;
+   }
+   
+   .btnajout{
+    margin: 1rem 2rem 0rem auto;
+    background-color:#f39a14;
+    justify-content: flex-end;
+   }
+   
    

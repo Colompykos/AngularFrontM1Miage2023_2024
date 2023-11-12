@@ -1,5 +1,7 @@
 <form ngForm (submit)="onSubmit($event);assignmentForm.reset()" #assignmentForm class="form" >
 
+  <h3>New Assignment</h3>
+
     <mat-form-field>
       <mat-label>Devoir</mat-label>
       <input matInput [(ngModel)]="nomDevoir" name="nom">
