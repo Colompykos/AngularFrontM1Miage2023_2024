@@ -1,3 +1,4 @@
+import { LoginComponent } from './assignments/login/login.component';
 import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AssignmentsComponent } from './assignments/assignments.component';
@@ -11,7 +12,9 @@ const routes: Routes = [
   {path:'home', component:AssignmentsComponent},
   {path:'add', component:AddAssignmentComponent},
   {path:'assignments/:id',component:AssignmentDetailComponent},
-  {path:'assignments/:id/edit',component:EditAssignmentComponent,canActivate:[authGuard]}
+  {path:'log',component:LoginComponent},
+  {path:'assignments/:id/edit',component:EditAssignmentComponent,canActivate:[authGuard]},
+  
 
 ];
 

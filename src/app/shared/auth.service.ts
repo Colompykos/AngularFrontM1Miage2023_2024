@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -6,23 +7,50 @@ import { Injectable } from '@angular/core';
 export class AuthService {
 
   loggedIn=false;
+  isAdmin = false;
 
-  LogIn(){
-    this.loggedIn=true;
-  }
+  users = [
+    {username: 'admin', password: 'admin', role: 'admin'},
+    {username: 'user', password: 'user', role: 'user'}
+  ];
+
+  constructor(private router:Router) { }
+
+  logIn(username: string, password: string) {
+
+    const user = this.users.find(u => u.username === username && u.password === password);
+    //if (user) {
+      if (username === 'admin' && password === 'admin') {
+      this.loggedIn = true;
+      this.isAdmin = true;
+      } else if (username === 'user' && password === 'user') {
+      this.loggedIn = true;
+      this.isAdmin = false;
+      }
+
+      console.log(`User ${username} is connected as  ${this.isAdmin ? 'admin' : 'utilisateur'}.`);
+      console.log('IsAdmin : ' + this.isAdmin);
+      console.log('IsLoggedIn : ' + this.loggedIn);
+      this.router.navigate(['/home']);
+  
+    }
 
   SignOut(){
-    this.loggedIn=false;
+    this.loggedIn = false;
+    this.isAdmin = false;
   }
 
-  isAdmin(){
-    const isUserAdmin= new Promise(
-      (resolve,reject)=> resolve(this.loggedIn)
-      );
-
-      return isUserAdmin
-
+  IsAdmin(){
+    const isUserAdmin = new Promise(
+      (resolve, reject) => {
+        setTimeout(
+          () => {
+            resolve(this.isAdmin);
+          },
+        );
+      }
+    );
+    return isUserAdmin;
   }
 
-  constructor() { }
 }

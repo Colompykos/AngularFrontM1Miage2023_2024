@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Assignment } from './assignment.model';
 import { FixedSizeVirtualScrollStrategy } from '@angular/cdk/scrolling';
 import { AssignmentsService } from '../shared/assignments.service';
+import { AuthService } from '../shared/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-assignments',
@@ -24,7 +26,9 @@ export class AssignmentsComponent {
   assignments!:Assignment[]
   
 
-  constructor(private assignmentsService: AssignmentsService) {}
+  constructor(private assignmentsService: AssignmentsService,
+    public authService:AuthService,
+    private router:Router) {}
 
   ngOnInit(): void {
     //  this.assignments = this.assignmentsService.getAssignments();
@@ -80,6 +84,10 @@ export class AssignmentsComponent {
       if(item===event) this.assignments.splice(index,1);
     });
   this.assignementSelectionne != null
+  }
+
+  addAssignment(){
+    this.router.navigate(['/add']);
   }
 
 }

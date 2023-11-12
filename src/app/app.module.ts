@@ -28,7 +28,6 @@ import { EditAssignmentComponent } from './assignments/edit-assignment/edit-assi
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { LoginComponent } from './assignments/login/login.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,

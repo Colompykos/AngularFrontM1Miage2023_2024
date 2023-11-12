@@ -11,10 +11,16 @@
         <button mat-icon-button class="icon home-icon" aria-label="Example icon-button with home icon" (click)="getHome()">
           <mat-icon class="icon">home</mat-icon>
         </button>
-        <button mat-icon-button class="icon account-icon" aria-label="Example icon-button with account_circle icon" (click)="getLogged()">
+        <button mat-icon-button class="icon connection-icon">
+          <mat-slide-toggle [(ngModel)]="authService.isAdmin || authService.loggedIn" [disabled]="!authService.isAdmin || !authService.loggedIn"></mat-slide-toggle>
+        </button>
+        <button mat-icon-button class="icon account-icon" aria-label="Example icon-button with account_circle icon" (click)="getLog()">
           <mat-icon>account_circle</mat-icon>
         </button>
-        <mat-slide-toggle (click)="login()">Log In</mat-slide-toggle>
+        <button mat-icon-button class="icon logOut-icon" aria-label="Example icon-button with exit icon" (click)="LogOut()">
+          <mat-icon>exit_to_app</mat-icon>
+        </button>
+
     </div>
 </mat-toolbar>
 
@@ -23,23 +29,23 @@
 <mat-drawer-container class="sidenav-container">
     <mat-drawer mode="side" class="sidenav" [opened]="sidenavState">
       <div class="sidenav-list">
-        <button class="sidenav-element">
+        <button class="sidenav-element" [disabled]="!this.authService.isAdmin">
           <mat-icon class="icons">folder</mat-icon>
           <a routerLink="/home">Liste des devoirs</a>
         </button>
-        <button class="sidenav-element">
+        <button class="sidenav-element" [disabled]="!this.authService.isAdmin">
           <mat-icon>add</mat-icon>
           <a routerLink="/add">Ajout d'un devoir</a>
         </button>
-        <button class="sidenav-element">
+        <button class="sidenav-element" [disabled]="!this.authService.isAdmin">
           <mat-icon>edit</mat-icon>
           <a href="">Modification d'un devoir</a>
         </button>
-        <button class="sidenav-element">
+        <button class="sidenav-element" [disabled]="!this.authService.isAdmin">
           <mat-icon>delete</mat-icon>
           <a href="">Suppression d'un devoir</a>
         </button>
-        <button class="sidenav-element">
+        <button class="sidenav-element" [disabled]="!this.authService.isAdmin">
           <mat-icon>data_usage</mat-icon>
           <a href="">Génération de données de test</a>
         </button>

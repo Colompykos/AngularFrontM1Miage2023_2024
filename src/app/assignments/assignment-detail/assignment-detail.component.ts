@@ -11,6 +11,11 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./assignment-detail.component.css'],
 })
 export class AssignmentDetailComponent implements OnInit{
+ 
+  constructor(private assignmentsService :AssignmentsService,
+              private route:ActivatedRoute,
+              private router:Router,
+              public authService:AuthService) {}
 
   // @Input() assignmentTransmis!:Assignment;
   assignmentTransmis:Assignment;
@@ -18,11 +23,7 @@ export class AssignmentDetailComponent implements OnInit{
 
   checked:boolean = false;
 
-
-  constructor(private assignmentsService :AssignmentsService,
-              private route:ActivatedRoute,
-              private router:Router,
-              private authService:AuthService) {}
+  
 
   ngOnInit(): void {
     const id = +this.route.snapshot.params["id"];
@@ -51,7 +52,8 @@ export class AssignmentDetailComponent implements OnInit{
   }
 
   isAdmin(){
-    return this.authService.loggedIn;
+    return this.authService.IsAdmin();
   }
+
 
 }

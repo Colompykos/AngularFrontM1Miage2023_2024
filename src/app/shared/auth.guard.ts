@@ -8,17 +8,16 @@ export const authGuard: CanActivateFn = (route, state) => {
   let authService = inject(AuthService);
   let router =inject(Router);
 
-  return authService.isAdmin().then(
-    (authentifie:boolean) => {
-      if (authentifie) {
-        console.log('"Vous êtes AddAssignmentComponent, navigation autorisée!"');
-        return true;
-      } else {
-        router.navigate(['/home']);
-        return false;
-      }
+  return authService.IsAdmin().then((isAuth) => {
+    if (isAuth) {
+      console.log('Vous êtes admin, vous pouvez naviguer');
+      return true;
+    } else {
+      console.log("Vous n'êtes pas admin, vous ne pouvez pas naviguer");
+      router.navigate(['/home']);
+      return false;
     }
-  );  
+  })
 
   
 };
