@@ -30,4 +30,11 @@ export class AppComponent {
       this.authservice.LogIn();
     }
   }
+
+  getHome(){
+    this.router.navigate(['/home'])
+  }
+  getLogged(){
+    this.router.navigate(['/log'])
+  }
 }

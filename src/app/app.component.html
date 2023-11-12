@@ -8,10 +8,10 @@
         </button>
     </div>
     <div class="right-part">
-        <button mat-icon-button class="icon home-icon" aria-label="Example icon-button with home icon">
+        <button mat-icon-button class="icon home-icon" aria-label="Example icon-button with home icon" (click)="getHome()">
           <mat-icon class="icon">home</mat-icon>
         </button>
-        <button mat-icon-button class="icon account-icon" aria-label="Example icon-button with account_circle icon">
+        <button mat-icon-button class="icon account-icon" aria-label="Example icon-button with account_circle icon" (click)="getLogged()">
           <mat-icon>account_circle</mat-icon>
         </button>
         <mat-slide-toggle (click)="login()">Log In</mat-slide-toggle>
