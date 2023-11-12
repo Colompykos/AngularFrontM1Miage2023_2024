@@ -1,3 +1,5 @@
+import { LoggingService } from './../../shared/logging.service';
+import { AuthService } from './../../shared/auth.service';
 import { Component, EventEmitter, /*Input*/ OnInit, Output } from '@angular/core';
 import { Assignment } from './../assignment.model';
 import { AssignmentsService } from 'src/app/shared/assignments.service';
@@ -19,7 +21,8 @@ export class AssignmentDetailComponent implements OnInit{
 
   constructor(private assignmentsService :AssignmentsService,
               private route:ActivatedRoute,
-              private router:Router) {}
+              private router:Router,
+              private authService:AuthService) {}
 
   ngOnInit(): void {
     const id = +this.route.snapshot.params["id"];
@@ -41,6 +44,14 @@ export class AssignmentDetailComponent implements OnInit{
     this.assignmentTransmis=null;
 
     this.router.navigate(["home"])
+  }
+
+  onClickEdit(){
+    this.router.navigate(['assignments',this.assignmentTransmis.id,'edit'])
+  }
+
+  isAdmin(){
+    return this.authService.loggedIn;
   }
 
 }

@@ -7,8 +7,11 @@
         <mat-card-title>{{assignmentTransmis.nom}}</mat-card-title>
         <mat-card-subtitle>{{assignmentTransmis.dateDeRendu | date : 'dd/MM/yyyy' }}</mat-card-subtitle>
     </mat-card-header>
+
+
     <div class="checkbox-content">
       <mat-checkbox *ngIf="!assignmentTransmis.rendu" (click)="onAssignmentRendu()" class="checked-margin" [checked]="checked">Checked</mat-checkbox>
+        <button mat-button class="edit-assign" [disabled]="!isAdmin()" (click)="onClickEdit()">Edit</button>
       <button mat-button class="delete-assign" (click)="onDelete()">Delete Assignment</button>
     </div>
     </mat-card>

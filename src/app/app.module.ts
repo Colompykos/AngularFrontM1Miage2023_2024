@@ -24,6 +24,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { AddAssignmentComponent } from './assignments/add-assignment/add-assignment.component';
 import { AssignmentsService } from './shared/assignments.service';
+import { EditAssignmentComponent } from './assignments/edit-assignment/edit-assignment.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { LoginComponent } from './assignments/login/login.component';
+
 
 @NgModule({
   declarations: [
@@ -32,6 +36,8 @@ import { AssignmentsService } from './shared/assignments.service';
     RenduDirective,
     AssignmentDetailComponent,
     AddAssignmentComponent,
+    EditAssignmentComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,6 +57,7 @@ import { AssignmentsService } from './shared/assignments.service';
     MatListModule,
     MatCardModule,
     MatCheckboxModule,
+    MatSlideToggleModule,
   ],
   providers: [AssignmentsService],
   bootstrap: [AppComponent],
