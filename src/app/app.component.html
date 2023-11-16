@@ -27,25 +27,25 @@
 <mat-drawer-container class="sidenav-container">
     <mat-drawer mode="side" class="sidenav" [opened]="sidenavState">
       <div class="sidenav-list">
-        <button class="sidenav-element" [disabled]="!this.authService.isAdmin">
+        <button class="sidenav-element" [ngClass]="{ 'disabled-button': !authService.isAdmin }">
           <mat-icon class="icons">folder</mat-icon>
-          <a routerLink="/home">Liste des devoirs</a>
+          <a routerLink="/home" [class.disabled-link]="!authService.isAdmin">Liste des devoirs</a>
         </button>
-        <button class="sidenav-element" [disabled]="!this.authService.isAdmin">
+        <button class="sidenav-element" [ngClass]="{ 'disabled-button': !authService.isAdmin }">
           <mat-icon>add</mat-icon>
-          <a routerLink="/add">Ajout d'un devoir</a>
+          <a routerLink="/add" [class.disabled-link]="!authService.isAdmin">Ajout d'un devoir</a>
         </button>
-        <button class="sidenav-element" [disabled]="!this.authService.isAdmin">
+        <button class="sidenav-element" [ngClass]="{ 'disabled-button': !authService.isAdmin }">
           <mat-icon>edit</mat-icon>
-          <a href="">Modification d'un devoir</a>
+          <a href="" [class.disabled-link]="!authService.isAdmin">Modification d'un devoir</a>
         </button>
-        <button class="sidenav-element" [disabled]="!this.authService.isAdmin">
+        <button class="sidenav-element" [ngClass]="{ 'disabled-button': !authService.isAdmin }">
           <mat-icon>delete</mat-icon>
-          <a href="">Suppression d'un devoir</a>
+          <a href="" [class.disabled-link]="!authService.isAdmin">Suppression d'un devoir</a>
         </button>
-        <button class="sidenav-element" [disabled]="!this.authService.isAdmin">
+        <button class="sidenav-element" [ngClass]="{ 'disabled-button': !authService.isAdmin }">
           <mat-icon>data_usage</mat-icon>
-          <a href="">Génération de données de test</a>
+          <a href="" [class.disabled-link]="!authService.isAdmin">Génération de données de test</a>
         </button>
       </div>
     </mat-drawer>

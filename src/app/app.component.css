@@ -71,5 +71,15 @@
   margin-top: 7px;
 }
 
+.disabled-button {
+  pointer-events: none;
+  opacity: 0.5; /* ou toute autre propriété de style pour indiquer qu'ils sont désactivés */
+}
+
+.disabled-link {
+  pointer-events: none;
+  color: #999; /* ou toute autre couleur pour les liens désactivés */
+}
+
 
   
