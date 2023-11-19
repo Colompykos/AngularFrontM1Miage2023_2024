@@ -27,9 +27,9 @@
 <mat-drawer-container class="sidenav-container">
     <mat-drawer mode="side" class="sidenav" [opened]="sidenavState">
       <div class="sidenav-list">
-        <button class="sidenav-element" [ngClass]="{ 'disabled-button': !authService.isAdmin }">
+        <button class="sidenav-element" [ngClass]="{ 'disabled-button': !(authService.isAdmin || authService.loggedIn) }">
           <mat-icon class="icons">folder</mat-icon>
-          <a routerLink="/home" [class.disabled-link]="!authService.isAdmin">Liste des devoirs</a>
+          <a routerLink="/home" [class.disabled-link]="!(authService.isAdmin || authService.loggedIn)">Liste des devoirs</a>
         </button>
         <button class="sidenav-element" [ngClass]="{ 'disabled-button': !authService.isAdmin }">
           <mat-icon>add</mat-icon>
