@@ -13,10 +13,10 @@
         </h3>
         <mat-list-item (click)="assignmentClique(assignment)">
           <p appRendu *ngIf="assignment.rendu; else nonSoumis">
-            Devoir intitulé {{ assignment.nom }} a été rendu.
+           {{assignment.id}} - Devoir intitulé {{ assignment.nom }} a été rendu.
           </p>
           <ng-template #nonSoumis>
-            Le devoir intitulé {{ assignment.nom }} n'a pas été rendu.
+            {{assignment.id}} - Le devoir intitulé {{ assignment.nom }} n'a pas été rendu.
           </ng-template>
         </mat-list-item>
         <mat-divider></mat-divider>

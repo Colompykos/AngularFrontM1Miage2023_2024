@@ -1,71 +1,69 @@
 import { Assignment } from './../assignments/assignment.model';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, catchError, of } from 'rxjs';
 import { LoggingService } from './logging.service';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AssignmentsService {
+  constructor(
+    private loggingService: LoggingService,
+    private http: HttpClient
+  ) {}
 
-  constructor(private loggingService:LoggingService) { }
+  url = 'http://localhost:8010/api/assignments';
 
-  
-  assignments:Assignment[] = [
-    {
-      id:1,
-      nom: 'Devoir Angular à rendre',
-      dateDeRendu: new Date('2021-03-01'),
-      rendu: true,
-    },
-    {
-      id:2,
-      nom: 'Devoir Java à rendre',
-      dateDeRendu: new Date('2023-03-05'),
-      rendu: false,
-    },
-    {
-      id:3,
-      nom: 'Devoir gestion de projet à rendre',
-      dateDeRendu: new Date('2021-03-10'),
-      rendu: false,
-    },
-  ];
+  assignments: Assignment[] = [];
+  private idCounter = 1;
 
-  getAssignments(): Observable<Assignment[]>{
-   return of(this.assignments); 
+  getAssignments(): Observable<Assignment[]> {
+    return this.http.get<Assignment[]>(this.url);
+    //  return of(this.assignments);
   }
 
-  getNewId():number{
-    return this.assignments.length+1;
+  getNewId(): number {
+    // return this.assignments.length++;
+    return this.idCounter++;
   }
 
-  getAssignment(id:number):Observable<Assignment>{
-
-    return of (this.assignments.find(ass=>ass.id===id));
-
+  getAssignment(id: number): Observable<Assignment> {
+    return this.http.get<Assignment>(this.url + '/' + id).pipe(catchError(this.handleError<any>(('### catchError: getAssignments by id avec id=' + id))));
+    // return of (this.assignments.find(ass=>ass.id===id));
   }
 
-  addAssignment(assignment:Assignment):Observable<string>{
-    this.assignments.push(assignment);
-    this.loggingService.log(assignment.nom, "ajouté")
-    return of ('Assignment ajouté')
+  addAssignment(assignment: Assignment): Observable<any> {
+    // this.assignments.push(assignment);
+    // return of ('Assignment ajouté')
+    this.loggingService.log(assignment.nom, 'ajouté');
+    return this.http.post<Assignment>(this.url, assignment);
   }
 
-  updateAssignment(assignment:Assignment):Observable<string>{
-    const index = this.assignments.findIndex(a => a.nom === assignment.nom);
-    this.assignments[index] = assignment;
-    this.loggingService.log(assignment.nom, "modifié")
-
-    return of ('Assignment modifié')
+  updateAssignment(assignment: Assignment): Observable<any> {
+    // const index = this.assignments.findIndex(a => a.nom === assignment.nom);
+    // this.assignments[index] = assignment;
+    // return of ('Assignment modifié')
+    this.loggingService.log(assignment.nom, 'modifié');
+    return this.http.put<Assignment>(this.url, assignment);
   }
 
-  deleteAssignment(assignment:Assignment):Observable<string>{
-    const index = this.assignments.indexOf(assignment)
-    this.assignments.splice(index,1);
+  deleteAssignment(assignment: Assignment): Observable<any> {
+    // const index = this.assignments.indexOf(assignment)
+    // this.assignments.splice(index,1);
 
-    this.loggingService.log(assignment.nom, "supprimé")
-    return of ('Assignment supprimé') 
-
+    // return of ('Assignment supprimé')
+    this.loggingService.log(assignment.nom, 'supprimé');
+    return this.http.delete(this.url + '/' + assignment._id);
   }
+
+  private handleError<T>(operation: any, result?: T) {
+    return (error: any): Observable<T> => {
+      console.log(error); // pour afficher dans la console
+      console.log(operation + ' a échoué ' + error.message);
+ 
+      return of(result as T);
+    }
+ };
+ 
 }

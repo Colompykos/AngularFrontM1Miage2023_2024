@@ -34,17 +34,19 @@ export class AssignmentDetailComponent implements OnInit{
   onAssignmentRendu(){
     this.assignmentTransmis.rendu = true
     this.assignmentsService.updateAssignment(this.assignmentTransmis)
-    .subscribe((message)=> console.log(message));
-    this.assignmentTransmis=null;
-    this.router.navigate(["home"])
+    .subscribe((reponse)=>{
+      console.log(reponse.message);
+      this.router.navigate(["home"])
+    });
   }
 
   onDelete(){
     this.assignmentsService.deleteAssignment(this.assignmentTransmis)
-    .subscribe((message)=> console.log(message));
-    this.assignmentTransmis=null;
-
-    this.router.navigate(["home"])
+    .subscribe((reponse)=>{
+      console.log(reponse.message);
+      this.router.navigate(["home"])
+    });
+    this.assignmentTransmis=undefined;
   }
 
   onClickEdit(){

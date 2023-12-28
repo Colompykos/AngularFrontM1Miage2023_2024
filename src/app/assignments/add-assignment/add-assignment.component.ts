@@ -29,20 +29,19 @@ export class AddAssignmentComponent {
     // console.log(this.nomDevoir);
     // console.log(this.dateDeRendu);
 
-    const newAss:Assignment = new Assignment()
-    newAss.id=this.assignmentsService.getNewId();
+    const newAss: Assignment = new Assignment();
+    newAss.id = this.assignmentsService.getNewId();
     newAss.nom = this.nomDevoir;
     newAss.dateDeRendu = this.datedeRendu;
-    newAss.rendu=this.rendu;
-
-   // this.nouvelAssignment.emit(newAss);
-
-   this.assignmentsService.addAssignment(newAss)
-   .subscribe((message)=> console.log(message));
-
-    this.router.navigate(['home'])
+    newAss.rendu = this.rendu;
+  
+    this.assignmentsService.addAssignment(newAss)
+      .subscribe((reponse) => {
+        console.log(reponse.message);
+  
+        this.router.navigate(['home']);
+      });
 
   }
-
   
 }

@@ -27,6 +27,7 @@ import { AssignmentsService } from './shared/assignments.service';
 import { EditAssignmentComponent } from './assignments/edit-assignment/edit-assignment.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { LoginComponent } from './assignments/login/login.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { LoginComponent } from './assignments/login/login.component';
     MatCardModule,
     MatCheckboxModule,
     MatSlideToggleModule,
+    HttpClientModule,
   ],
   providers: [AssignmentsService],
   bootstrap: [AppComponent],
