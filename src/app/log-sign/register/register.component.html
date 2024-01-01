@@ -1,0 +1,33 @@
+<div class="background">
+    <div class="shape"></div>
+    <div class="shape"></div>
+</div>
+<form [formGroup]="form" (submit)="onSubmit()">
+    <h3>Sign up</h3>
+
+    <label for="username">Username</label>
+    <input formControlName="name" type="text" placeholder="Name" id="username">
+
+    <label for="mail">Mail</label>
+    <input formControlName="email" type="text" placeholder="Email" id="email">
+
+    <label for="password">Password</label>
+    <input formControlName="password" type="password" placeholder="Password" id="password">
+
+    <div class="radio-input">
+        <label class="form-control">
+          <input formControlName="isAdmin" type="radio" [value]="true" required>
+          Teacher
+        </label>
+        <label class="form-control">
+          <input formControlName="isAdmin" type="radio" [value]="false" required>
+          Student
+        </label>
+      </div>
+
+    <div class="have-account">
+        Alreay have an account?
+        <a routerLink="/login">Login</a>
+    </div>
+    <button type="submit">Sign up</button>
+</form>

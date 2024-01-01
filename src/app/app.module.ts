@@ -26,8 +26,11 @@ import { AddAssignmentComponent } from './assignments/add-assignment/add-assignm
 import { AssignmentsService } from './shared/assignments.service';
 import { EditAssignmentComponent } from './assignments/edit-assignment/edit-assignment.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import { LoginComponent } from './assignments/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
+import { RegisterComponent } from './log-sign/register/register.component';
+import { LoginComponent } from './log-sign/login/login.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -37,6 +40,7 @@ import { HttpClientModule } from '@angular/common/http';
     AssignmentDetailComponent,
     AddAssignmentComponent,
     EditAssignmentComponent,
+    RegisterComponent,
     LoginComponent,
   ],
   imports: [
@@ -59,6 +63,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatCheckboxModule,
     MatSlideToggleModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    MatRadioModule
   ],
   providers: [AssignmentsService],
   bootstrap: [AppComponent],

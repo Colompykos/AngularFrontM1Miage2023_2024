@@ -1,6 +1,6 @@
 .toolbar{
     display: flex;
-    background-color: #f39a14;
+    background-color: rgba(13, 70, 194, 0.61);
     justify-content: space-evenly;
 }
 .left-part{
@@ -81,5 +81,14 @@
   color: #999; 
 }
 
+.sidenav-element:hover {
+  transition-duration: 0.1s;
+  background-color: rgba(13, 70, 194, 0.61) !important;
+  color: white;
+}
+
+.sidenav-element a:hover{
+  color: white;
+}
 
   

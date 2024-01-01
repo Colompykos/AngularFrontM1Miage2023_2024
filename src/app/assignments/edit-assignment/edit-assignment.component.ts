@@ -2,6 +2,7 @@ import { AssignmentsService } from 'src/app/shared/assignments.service';
 import { Component } from '@angular/core';
 import { Assignment } from '../assignment.model';
 import { ActivatedRoute, Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-edit-assignment',
@@ -36,9 +37,16 @@ export class EditAssignmentComponent {
       .updateAssignment(this.assignment)
       .subscribe((reponse) => {
         console.log(reponse.message);
+        this.router.navigate(['/home']);
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Your work has been modified",
+          showConfirmButton: false,
+          timer: 1500
+        });
  
         // navigation vers la home page
-        this.router.navigate(['/home']);
       });
  
   }
