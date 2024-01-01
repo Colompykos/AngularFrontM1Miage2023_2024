@@ -1,24 +1,31 @@
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from './shared/auth.service';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AssignmentsService } from './shared/assignments.service';
 import { Assignment } from './assignments/assignment.model';
+import { Emitters } from './emitters/emitter';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
-  constructor(public authService:AuthService,private router:Router,private assignmentService:AssignmentsService){}
+  constructor(public authService:AuthService,private router:Router,private assignmentService:AssignmentsService, private http:HttpClient){}
 
   title = 'Assignment-App';
   assignments!: Assignment[];
   sidenavState:boolean=false;
+  authenticated:boolean=false
+  name: string = ''
 
   ngOnInit(): void {
     //this.assignments = this.assignmentService.getAssignments();
+     Emitters.authEmitter.subscribe((auth:boolean) =>{
+       this.authenticated=auth
+     })
     this.getAssignments();
   }
   getAssignments(){
@@ -33,7 +40,7 @@ export class AppComponent {
   }
 
   getLog(){
-    this.router.navigate(["/log"])
+    this.router.navigate(["/register"])
   }
 
   getHome(){
@@ -50,12 +57,18 @@ export class AppComponent {
   //   }
   // }
 
-  LogOut(){
+  LogOut():void{
 
-    this.authService.loggedIn = false
-    this.authService.isAdmin=false
+    // this.authService.loggedIn = false
+    // this.authService.isAdmin=false
 
-    this.router.navigate(['/log']);
-  
+    // this.http.post('http://localhost:8010/api/logout',{},{withCredentials:true})
+    // .subscribe(()=> this.authenticated=false)
+
+    // this.router.navigate(['/login']);
+
+
+    this.authService.SignOut();
+    this.authenticated=false
   }
 }
