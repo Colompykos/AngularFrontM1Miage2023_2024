@@ -1,12 +1,10 @@
 <main class="container">
   <div class="btnadd-container">
-    <button mat-button *ngIf="this.authService.isAdmine" (click)="addAssignment()" class="btnajout">Add assignment</button>
+    <button mat-button *ngIf="isConnected" (click)="addAssignment()" class="btnajout">Add assignment</button>
   </div>
     <!-- Page Heading -->
-    <h3 class="title" *ngIf="!(this.authService.isAdmine || this.authService.loggedIn)">Welcome to Assignment App</h3>
-
   <mat-list *ngFor="let assignment of assignments">
-    <nav *ngIf="(this.authService.isAdmine || this.authService.loggedIn)">
+    <nav>
       <a routerLink="/assignments/{{assignment.id}}">
         <h3 mat-subheader class="mat-subheader">
           {{ assignment.dateDeRendu | date : "dd/MM/yyyy" }}
