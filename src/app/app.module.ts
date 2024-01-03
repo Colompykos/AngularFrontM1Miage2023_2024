@@ -32,6 +32,7 @@ import { LoginComponent } from './log-sign/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatRadioModule} from '@angular/material/radio';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,7 +65,7 @@ import {MatRadioModule} from '@angular/material/radio';
     MatSlideToggleModule,
     HttpClientModule,
     ReactiveFormsModule,
-    MatRadioModule
+    MatRadioModule,
   ],
   providers: [AssignmentsService],
   bootstrap: [AppComponent],

@@ -1,3 +1,4 @@
+import { AuthService } from './../../shared/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -13,7 +14,7 @@ export class RegisterComponent {
 
   form:FormGroup
 
-  constructor( private formBuilder:FormBuilder, private http:HttpClient, private router:Router){
+  constructor( private formBuilder:FormBuilder, private http:HttpClient, private router:Router, private authService:AuthService){
 
   }
   ngOnInit(): void {
@@ -26,36 +27,7 @@ export class RegisterComponent {
   }
 
   onSubmit():void{
-    let user = this.form.getRawValue()
-
-    console.log(user);
-
-    if(user.name==""|| user.email=="" || user.password=="" || user.isAdmin === ""){
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Please fill all the fields!',
-      })
-    }
-    else if(!this.ValidateEmail(user.email)){
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Please enter a valid email!',
-      })
-    }
-    else{
-      this.http.post("http://localhost:8010/api/register",user,{
-        withCredentials:true
-      })
-      .subscribe(()=>{
-        this.router.navigate(["/login"]);
-        Swal.fire("Success", "User created", "success");
-      }, (err) => {
-        Swal.fire("Error", err.error.emailState, "error");
-      });
-    }
-    
+    this.authService.register(this.form.getRawValue())
   }
 
   ValidateEmail = (email:any) =>{

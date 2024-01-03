@@ -1,7 +1,7 @@
 
 <!-- Toolbar Part-->
 
-<mat-toolbar class="toolbar" *ngIf="!authenticated">
+<mat-toolbar class="toolbar" *ngIf="!authService.loggedIn">
     <div class="left-part">
         <button mat-icon-button class="icon menu-icon" aria-label="Example icon-button with menu icon" (click)="toggleSideNav($event)">
           <mat-icon class="icon">menu</mat-icon>
@@ -21,7 +21,7 @@
 
     </div>
 </mat-toolbar>
-<mat-toolbar class="toolbar" *ngIf="authenticated">
+<mat-toolbar class="toolbar" *ngIf="authService.loggedIn">
     <div class="left-part">
         <button mat-icon-button class="icon menu-icon" aria-label="Example icon-button with menu icon" (click)="toggleSideNav($event)">
           <mat-icon class="icon">menu</mat-icon>
@@ -47,17 +47,17 @@
 <mat-drawer-container class="sidenav-container">
     <mat-drawer mode="side" class="sidenav" [opened]="sidenavState">
       <div class="sidenav-list">
-        <button class="sidenav-element" [ngClass]="{ 'disabled-button': !(authService.isAdmine || authService.loggedIn) }">
+        <button class="sidenav-element">
           <mat-icon class="icons">folder</mat-icon>
-          <a routerLink="/home" [class.disabled-link]="!(authService.isAdmine || authService.loggedIn)">Liste des devoirs</a>
+          <a routerLink="/home">Liste des devoirs</a>
         </button>
-        <button class="sidenav-element" [ngClass]="{ 'disabled-button': !authService.isAdmine }">
+        <button class="sidenav-element" [ngClass]="{ 'disabled-button': !(authService.isAdmine || authService.loggedIn) }">
           <mat-icon>add</mat-icon>
-          <a routerLink="/add" [class.disabled-link]="!authService.isAdmine">Ajout d'un devoir</a>
+          <a routerLink="/add" [class.disabled-link]="!(authService.isAdmine || authService.loggedIn)">Ajout d'un devoir</a>
         </button>
-        <button class="sidenav-element" [ngClass]="{ 'disabled-button': !authService.isAdmine }">
+        <button class="sidenav-element" [ngClass]="{ 'disabled-button': !(authService.isAdmine || authService.loggedIn) }">
           <mat-icon>edit</mat-icon>
-          <a href="" [class.disabled-link]="!authService.isAdmine">Modification d'un devoir</a>
+          <a href="" [class.disabled-link]="!(authService.isAdmine || authService.loggedIn)">Modification d'un devoir</a>
         </button>
         <button class="sidenav-element" [ngClass]="{ 'disabled-button': !authService.isAdmine }">
           <mat-icon>delete</mat-icon>

@@ -4,7 +4,6 @@ import { AuthService } from './shared/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { AssignmentsService } from './shared/assignments.service';
 import { Assignment } from './assignments/assignment.model';
-import { Emitters } from './emitters/emitter';
 
 @Component({
   selector: 'app-root',
@@ -18,14 +17,13 @@ export class AppComponent implements OnInit {
   title = 'Assignment-App';
   assignments!: Assignment[];
   sidenavState:boolean=false;
-  authenticated:boolean=false
   name: string = ''
 
   ngOnInit(): void {
     //this.assignments = this.assignmentService.getAssignments();
-     Emitters.authEmitter.subscribe((auth:boolean) =>{
-       this.authenticated=auth
-     })
+    setTimeout(() => {
+      this.authService.checkauth();
+    }, 0);
     this.getAssignments();
   }
   getAssignments(){
@@ -69,6 +67,7 @@ export class AppComponent implements OnInit {
 
 
     this.authService.SignOut();
-    this.authenticated=false
+    // this.authenticated=false
+
   }
 }

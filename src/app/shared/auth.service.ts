@@ -3,23 +3,21 @@ import { Injectable, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { Emitters } from '../emitters/emitter';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService implements OnInit {
+  form: FormGroup;
 
-  form:FormGroup
-
-  loggedIn=false;
+  loggedIn = false;
   isAdmine = false;
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       email: '',
-      password: ''
-    })
+      password: '',
+    });
   }
 
   // users = [
@@ -27,53 +25,55 @@ export class AuthService implements OnInit {
   //   {username: 'user', password: 'user', role: 'user'}
   // ];
 
-  constructor(private router:Router, private http:HttpClient, private formBuilder:FormBuilder) { }
+  constructor(
+    private router: Router,
+    private http: HttpClient,
+    private formBuilder: FormBuilder
+  ) {}
 
-  login(user: { email: string; password: string }){
-
+  login(user: { email: string; password: string }) {
     console.log(user);
 
-    if(user.email ==="" || user.password===""){
+    if (user.email === '' || user.password === '') {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
         text: 'Please fill all the fields!',
-      })
-    }
-    else if(!this.ValidateEmail(user.email)){
+      });
+    } else if (!this.ValidateEmail(user.email)) {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
         text: 'Please enter a valid email!',
-      })
-    }
-    else{
-      this.http.post<any>("http://localhost:8010/api/login", user, {
-      withCredentials: true
-    }).subscribe(
-      (res) => {
-        Swal.fire("Success", "You're logged in", "success");
-        this.router.navigate(["/home"]);
-        Emitters.authEmitter.emit(true);
-
-        this.getUserData().subscribe((userData)=>{
-          if (userData.isAdmin === "true") {
-            this.loggedIn = true;
-            this.isAdmine = true;
-            console.log('User is admin');
-          }else{
-            this.loggedIn = true;
-            this.isAdmine = false;
-            console.log('User is not admin');
-          }
+      });
+    } else {
+      this.http
+.post<any>('http://localhost:8010/api/login', user, {
+          withCredentials: true,
         })
-      },
-      (err) => {
-        console.log(err);
-        Swal.fire("Error", err.error.message, "error");
-        Emitters.authEmitter.emit(false);
-      }
-    );
+        .subscribe(
+          (res) => {
+            Swal.fire('Success', "You're logged in", 'success');
+            this.router.navigate(['/home']);
+
+            this.getUserData().subscribe((userData) => {
+              if (userData.isAdmin === 'true') {
+                this.loggedIn = true;
+                this.isAdmine = true;
+                console.log('User is admin');
+              } else {
+                this.loggedIn = true;
+                this.isAdmine = false;
+                console.log('User is not admin');
+              }
+            });
+          },
+          (err) => {
+            console.log(err);
+            Swal.fire('Error', err.error.message, 'error');
+            // Emitters.authEmitter.emit(false);
+          }
+        );
     }
   }
 
@@ -93,48 +93,101 @@ export class AuthService implements OnInit {
   //     console.log('IsAdmin : ' + this.isAdmin);
   //     console.log('IsLoggedIn : ' + this.loggedIn);
   //     this.router.navigate(['/home']);
-  
+
   //   }
 
-  SignOut(){
+  SignOut() {
     // this.loggedIn = false;
     // this.isAdmine = false;
-    this.http.post('http://localhost:8010/api/logout',{},{withCredentials:true})
-    .subscribe(()=> {
-      Emitters.authEmitter.emit(false);
-      this.loggedIn = false;
-      this.isAdmine = false;
-      console.log("User signed out");
-
-    })
+    this.http
+      .post('http://localhost:8010/api/logout', {}, { withCredentials: true }) // needs to be changed with the link of deployment
+      .subscribe(() => {
+        // Emitters.authEmitter.emit(false);
+        this.loggedIn = false;
+        this.isAdmine = false;
+        console.log('User signed out');
+      });
 
     this.router.navigate(['/login']);
   }
 
-   IsAdmin(){
-     const isUserAdmin = new Promise(
-       (resolve, reject) => {
-         setTimeout(
-           () => {
-                resolve(this.isAdmine);
-           },
-         );
-       }
-     );
-     return isUserAdmin;
-   }
+  IsAdmin() {
+    const isUserAdmin = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(this.isAdmine);
+      });
+    });
+    return isUserAdmin;
+  }
 
-  ValidateEmail = (email:any) =>{
+  ValidateEmail = (email: any) => {
     const emailRegex: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    if (email.match(emailRegex)){
+    if (email.match(emailRegex)) {
       return true;
-    }else
-      return false;
-  }
+    } else return false;
+  };
 
   getUserData() {
-    return this.http.get<any>('http://localhost:8010/api/user', { withCredentials: true });
+    return this.http.get<any>('http://localhost:8010/api/user', {
+      withCredentials: true,
+    });
   }
 
+  checkauth() {
+    this.http
+      .get('http://localhost:8010/api/checkAuth', { withCredentials: true })
+      .subscribe((response: any) => {
+        this.loggedIn = response.loggedIn;
+        if (response.isAdmin === 'true') {
+          this.isAdmine = true;
+        } else {
+          this.isAdmine = false;
+        }
+        console.log(this.loggedIn);
+        console.log(this.isAdmine);
+      });
+  }
+
+  register(user: { name:string ; email: string; password: string; isAdmin:string }){
+
+    console.log(user);
+
+    if(user.name==""|| user.email=="" || user.password=="" || user.isAdmin === ""){
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Please fill all the fields!',
+      })
+    }
+    else if(!this.ValidateEmail(user.email)){
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Please enter a valid email!',
+      })
+    }
+    else{
+      this.http.post("http://localhost:8010/api/register",user,{
+        withCredentials:true
+      })
+      .subscribe(()=>{
+        this.router.navigate(["/home"]);
+        Swal.fire("Success", "User created", "success");
+        this.getUserData().subscribe((userData) => {
+          if (userData.isAdmin === 'true') {
+            this.loggedIn = true;
+            this.isAdmine = true;
+            console.log('User is admin');
+          } else {
+            this.loggedIn = true;
+            this.isAdmine = false;
+            console.log('User is not admin');
+          }
+        });
+      }, (err) => {
+        Swal.fire("Error", err.error.emailState, "error");
+      });
+    }
+  }
 }
