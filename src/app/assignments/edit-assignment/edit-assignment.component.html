@@ -5,6 +5,21 @@
             <input matInput placeholder="Edition du nom" [(ngModel)]="nomAssignment" name="assignment-name">
         </mat-form-field>
         <mat-form-field>
+            <input matInput placeholder="Edition de l'auteur" [(ngModel)]="auteur" name="auteur">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Matière"  name="matiere">
+            <mat-select [(ngModel)]="assignment.matiere" name="matiere">
+                <mat-option *ngFor="let matiere of matieres" [value]="matiere.nom">{{matiere.nom}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Remarques" [(ngModel)]="remarques" name="remarques">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Edition de la note" [(ngModel)]="note" name="note">
+        </mat-form-field>
+        <mat-form-field>
             <input matInput [matDatepicker]="picker" placeholder="Edition de la date" [(ngModel)]="dateDeRendu"
                 name="date">
             <mat-datepicker-toggle matSuffix [for]="picker">

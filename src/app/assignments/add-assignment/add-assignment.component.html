@@ -6,6 +6,26 @@
       <mat-label>Devoir</mat-label>
       <input matInput [(ngModel)]="nomDevoir" name="nom">
     </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Auteur</mat-label>
+      <input matInput [(ngModel)]="auteur" name="auteur">
+    </mat-form-field>
+    
+    <mat-form-field>
+      <mat-label>Matière</mat-label>
+      <mat-select [(value)]="matiere">
+        <mat-option *ngFor="let matiere of matieres" [value]="matiere.nom">
+          {{matiere.nom}}
+        </mat-option>
+      </mat-select>
+      <input matInput [(ngModel)]="matiere" name="matiere">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Remarques</mat-label>
+      <textarea matInput [(ngModel)]="remarques" name="remarques"></textarea>
+    </mat-form-field>
   
     <mat-form-field>
       <mat-label>Choisir une date</mat-label>

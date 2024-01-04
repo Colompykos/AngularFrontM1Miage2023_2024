@@ -1,8 +1,9 @@
 import { LoggingService } from './../../shared/logging.service';
 import { AuthService } from './../../shared/auth.service';
 import { Component, EventEmitter, /*Input*/ OnInit, Output } from '@angular/core';
-import { Assignment } from './../assignment.model';
+import { Assignment, Matiere } from './../assignment.model';
 import { AssignmentsService } from 'src/app/shared/assignments.service';
+import { MatiereService } from 'src/app/shared/matieres.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -11,11 +12,16 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./assignment-detail.component.css'],
 })
 export class AssignmentDetailComponent implements OnInit{
+
+  selectedMatiere: Matiere;
+  matieres: Matiere[] = [];
  
   constructor(private assignmentsService :AssignmentsService,
               private route:ActivatedRoute,
               private router:Router,
-              public authService:AuthService) {}
+              public authService:AuthService,
+              private matiereService: MatiereService
+              ) {}
 
   // @Input() assignmentTransmis!:Assignment;
   assignmentTransmis:Assignment;
@@ -28,8 +34,19 @@ export class AssignmentDetailComponent implements OnInit{
   ngOnInit(): void {
     const id = +this.route.snapshot.params["id"];
     this.assignmentsService.getAssignment(id)
-    .subscribe(ass=>this.assignmentTransmis=ass);
-  }
+     
+    this.matiereService.getMatieres().subscribe((matieresFromDb) => {
+      this.matieres = matieresFromDb;
+      //this.matieres = matieresFromDb.filter(matiere => matiere.nom === this.assignmentTransmis.matiere);
+    });
+    this.assignmentsService.getAssignment(id)
+  .subscribe(ass => {
+    this.assignmentTransmis = ass;
+    this.selectedMatiere = this.matieres.find(matiere => matiere.nom === this.assignmentTransmis.matiere);
+  });
+
+
+    }
 
   onAssignmentRendu(){
     this.assignmentTransmis.rendu = true

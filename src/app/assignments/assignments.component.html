@@ -1,6 +1,6 @@
 <main class="container">
   <div class="btnadd-container">
-    <button mat-button *ngIf="isConnected" (click)="addAssignment()" class="btnajout">Add assignment</button>
+    <button mat-button *ngIf="authService.loggedIn" (click)="addAssignment()" class="btnajout">Add assignment</button>
   </div>
     <!-- Page Heading -->
   <mat-list *ngFor="let assignment of assignments">
@@ -16,6 +16,7 @@
           <ng-template #nonSoumis>
             {{assignment.id}} - Le devoir intitulé {{ assignment.nom }} n'a pas été rendu.
           </ng-template>
+        
         </mat-list-item>
         <mat-divider></mat-divider>
       </a>

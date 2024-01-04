@@ -14,7 +14,15 @@ export class AssignmentsComponent {
 
   nomDevoir: string = '';
 
+  auteur : string = '';
+
+  matiere : string = '';
+
   datedeRendu: Date = new Date('2023-01-01');
+
+  note: number = 0;
+
+  remarques: string = '';
 
   rendu: boolean = false;
 
@@ -59,6 +67,12 @@ export class AssignmentsComponent {
     newAss.nom = this.nomDevoir;
     newAss.dateDeRendu = this.datedeRendu;
     newAss.rendu = this.rendu;
+    newAss.auteur = this.auteur;
+    newAss.matiere = this.matiere;
+    newAss.note = this.note;
+    newAss.remarques = this.remarques;
+    
+    
 
     this.assignments.push(newAss);
   }

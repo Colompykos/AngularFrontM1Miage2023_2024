@@ -27,6 +27,8 @@ import { AssignmentsService } from './shared/assignments.service';
 import { EditAssignmentComponent } from './assignments/edit-assignment/edit-assignment.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { HttpClientModule } from '@angular/common/http';
+import { MatSelectModule } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
 import { RegisterComponent } from './log-sign/register/register.component';
 import { LoginComponent } from './log-sign/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -64,6 +66,8 @@ import {MatRadioModule} from '@angular/material/radio';
     MatCheckboxModule,
     MatSlideToggleModule,
     HttpClientModule,
+    MatSelectModule,
+    MatOptionModule,
     ReactiveFormsModule,
     MatRadioModule,
   ],

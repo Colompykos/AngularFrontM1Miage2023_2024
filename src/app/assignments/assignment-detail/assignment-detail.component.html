@@ -7,10 +7,19 @@
         <mat-card-title>{{assignmentTransmis.nom}}</mat-card-title>
         <mat-card-subtitle>{{assignmentTransmis.dateDeRendu | date : 'dd/MM/yyyy' }}</mat-card-subtitle>
     </mat-card-header>
+    <mat-card-content>
+      <p><strong>Auteur :</strong> {{ assignmentTransmis.auteur }}</p>
+      <p><strong>Matière :</strong> {{ selectedMatiere.nom }}</p>
+      <p><strong>Professeur :</strong> {{ selectedMatiere?.professeur }}</p>
+      <img [src]="selectedMatiere.image" alt="Image du professeur">
+      <p><strong>Note :</strong> {{ assignmentTransmis.note}}</p>
+      <p><strong>Remarques :</strong> {{ assignmentTransmis.remarques }}</p>
+      
+  </mat-card-content>
 
 
     <div class="checkbox-content">
-      <mat-checkbox *ngIf="!assignmentTransmis.rendu" [disabled]="!(this.authService.isAdmine || this.authService.loggedIn)" (click)="onAssignmentRendu()" class="checked-margin" [checked]="checked">Checked</mat-checkbox>
+      <mat-checkbox *ngIf="!assignmentTransmis.rendu" [disabled]="!(this.authService.isAdmine || this.authService.loggedIn)" [disabled]="!assignmentTransmis.note" (click)="onAssignmentRendu()" class="checked-margin" [checked]="checked">Checked</mat-checkbox>
         <button mat-button [disabled]="!(this.authService.isAdmine || this.authService.loggedIn)" class="edit-assign" (click)="onClickEdit()" class="edit-elem">Edit</button>
       <button mat-button [disabled]="!this.authService.isAdmine" class="delete-assign" (click)="onDelete()">Delete Assignment</button>
     </div>
