@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Assignment } from './assignment.model';
-import { FixedSizeVirtualScrollStrategy } from '@angular/cdk/scrolling';
 import { AssignmentsService } from '../shared/assignments.service';
 import { AuthService } from '../shared/auth.service';
 import { Router } from '@angular/router';
@@ -32,12 +31,14 @@ export class AssignmentsComponent {
   // formVisible = false;
 
   assignments!:Assignment[]
+
+  isConnected: boolean=false;
   
 
   constructor(private assignmentsService: AssignmentsService,
     public authService:AuthService,
     private router:Router) {}
-
+    
   ngOnInit(): void {
     //  this.assignments = this.assignmentsService.getAssignments();
     this.getAssignments()
@@ -45,6 +46,7 @@ export class AssignmentsComponent {
     setTimeout(() => {
       this.ajoutActive = true;
     }, 3000);
+
   }
   getAssignments(){
     this.assignmentsService.getAssignments().subscribe((assignments) => {

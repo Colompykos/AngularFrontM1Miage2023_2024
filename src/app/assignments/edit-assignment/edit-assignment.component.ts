@@ -49,10 +49,7 @@ export class EditAssignmentComponent {
     console.log(this.assignment.matiere);
     this.assignment.matiere = this.assignment.matiere;
     console.log(this.assignment.matiere);
-    if (this.note > 20) {
-      alert('La note doit être comprise entre 0 et 20');
-      return;
-    }    
+    this.note = this.note > 20 ? 20 : this.note;
     this.assignment.note = this.note;
     this.assignment.remarques = this.remarques;
     this.assignment.auteur = this.auteur;

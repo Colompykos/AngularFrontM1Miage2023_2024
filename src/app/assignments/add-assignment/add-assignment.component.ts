@@ -3,8 +3,7 @@ import { Assignment, Matiere } from '../assignment.model';
 import { AssignmentsService } from 'src/app/shared/assignments.service';
 import { MatiereService } from 'src/app/shared/matieres.service';
 import { Router } from '@angular/router';
-import { Inject } from '@angular/core';
-
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-assignment',
@@ -51,8 +50,15 @@ export class AddAssignmentComponent {
     this.assignmentsService.addAssignment(newAss)
       .subscribe((reponse) => {
         console.log(reponse.message);
-  
         this.router.navigate(['home']);
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Your work has been added",
+          showConfirmButton: false,
+          timer: 1500
+        });
+
       });
 
   }

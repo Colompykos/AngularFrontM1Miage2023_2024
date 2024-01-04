@@ -1,0 +1,19 @@
+<div class="background">
+    <div class="shape"></div>
+    <div class="shape"></div>
+</div>
+<form [formGroup]="form" (submit)="onSubmit()">
+    <h3>Log in</h3>
+
+    <label for="mail">Mail</label>
+    <input formControlName="email" type="text" placeholder="Email" id="Email">
+
+    <label for="password">Password</label>
+    <input formControlName="password" type="password" placeholder="Password" id="password">
+
+    <div class="have-account">
+        Don't have an account?
+        <a routerLink="/register">Signup</a>
+    </div>
+    <button type="submit">Log in</button>
+</form>
