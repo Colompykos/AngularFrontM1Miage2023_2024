@@ -28,6 +28,8 @@ import { EditAssignmentComponent } from './assignments/edit-assignment/edit-assi
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { LoginComponent } from './assignments/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
+import { MatSelectModule } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -59,6 +61,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatCheckboxModule,
     MatSlideToggleModule,
     HttpClientModule,
+    MatSelectModule,
+    MatOptionModule,
   ],
   providers: [AssignmentsService],
   bootstrap: [AppComponent],

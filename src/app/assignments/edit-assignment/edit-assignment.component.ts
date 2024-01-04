@@ -1,6 +1,7 @@
 import { AssignmentsService } from 'src/app/shared/assignments.service';
+import { MatiereService } from 'src/app/shared/matieres.service';
 import { Component } from '@angular/core';
-import { Assignment } from '../assignment.model';
+import { Assignment, Matiere } from '../assignment.model';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -12,16 +13,29 @@ export class EditAssignmentComponent {
   assignment: Assignment;
   nomAssignment:string;
   dateDeRendu:Date;
+  matiere:string;
+  note:number;
+  remarques:string;
+  auteur:string;
+
+  matieres: Matiere[] = [];
 
   ngOnInit():void{
+    this.matiereService.getMatieres().subscribe((matieres) => {
+      this.matieres = matieres;
+      this.getAssignment();
 
-    this.getAssignment();
+      
+    });
+
+    
   }
   
 
   constructor(private assignmentsService:AssignmentsService,
              private route: ActivatedRoute,
-             private router: Router
+             private router: Router,
+             private matiereService: MatiereService
  ){}
 
   onSaveAssignment(){
@@ -32,6 +46,16 @@ export class EditAssignmentComponent {
     // on récupère les valeurs dans le formulaire
     this.assignment.nom = this.nomAssignment;
     this.assignment.dateDeRendu = this.dateDeRendu;
+    console.log(this.assignment.matiere);
+    this.assignment.matiere = this.assignment.matiere;
+    console.log(this.assignment.matiere);
+    if (this.note > 20) {
+      alert('La note doit être comprise entre 0 et 20');
+      return;
+    }    
+    this.assignment.note = this.note;
+    this.assignment.remarques = this.remarques;
+    this.assignment.auteur = this.auteur;
     this.assignmentsService
       .updateAssignment(this.assignment)
       .subscribe((reponse) => {
@@ -40,7 +64,8 @@ export class EditAssignmentComponent {
         // navigation vers la home page
         this.router.navigate(['/home']);
       });
- 
+      console.log(this.assignment.nom);
+      //console.log(this.assignment.matiere);
   }
 
   getAssignment() {
@@ -54,6 +79,7 @@ export class EditAssignmentComponent {
       // Pour pré-remplir le formulaire
       this.nomAssignment = assignment.nom;
       this.dateDeRendu = assignment.dateDeRendu;
+      this.matiere = assignment.matiere;
     });
   }
  
