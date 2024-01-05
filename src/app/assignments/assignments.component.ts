@@ -1,15 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Assignment } from './assignment.model';
 import { AssignmentsService } from '../shared/assignments.service';
 import { AuthService } from '../shared/auth.service';
 import { Router } from '@angular/router';
+import {MatSort} from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-assignments',
   templateUrl: './assignments.component.html',
   styleUrls: ['./assignments.component.css'],
 })
-export class AssignmentsComponent {
+export class AssignmentsComponent implements OnInit{
+  @ViewChild(MatPaginator)  paginator : MatPaginator
+  @ViewChild(MatSort)  sort : MatSort
+
+  dataSource:MatTableDataSource<Assignment>
+  posts:any
+
+  
   ajoutActive: boolean = false;
 
   nomDevoir: string = '';
@@ -33,6 +43,8 @@ export class AssignmentsComponent {
   assignments!:Assignment[]
 
   isConnected: boolean=false;
+
+  filtreRendu: string = 'Tous';
   
 
   constructor(private assignmentsService: AssignmentsService,
@@ -51,6 +63,13 @@ export class AssignmentsComponent {
   getAssignments(){
     this.assignmentsService.getAssignments().subscribe((assignments) => {
       this.assignments = assignments;
+      this.posts=this.assignments
+      this.dataSource = new MatTableDataSource(this.posts)
+      console.log(this.dataSource);
+      
+      this.dataSource.paginator = this.paginator
+      this.dataSource.sort = this.sort
+      this.applyFilter();
     });
 
 
@@ -106,4 +125,66 @@ export class AssignmentsComponent {
     this.router.navigate(['/add']);
   }
 
+  //   Filter(event:Event){
+  //   const filterValue = (event.target as HTMLInputElement).value;
+  //   this.dataSource.filter = filterValue.trim().toLowerCase()
+
+  //   if(this.dataSource.paginator){
+  //     this.dataSource.paginator.firstPage()
+  //   }
+  // }
+
+  // Filter(event:Event){
+
+  //   const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
+  
+  //   this.dataSource.filterPredicate = (data: Assignment, filter: string) => {
+  //     // Convertir la valeur de rendu en texte
+  //     const renduText = data.rendu ? 'rendu' : 'non rendu';
+  
+  //     // Vérifier si la valeur filtrée correspond à "rendu" ou "non rendu"
+  //     return renduText.includes(filter);
+  //   };
+  
+  //   this.dataSource.filter = filterValue;
+  
+  //   if (this.dataSource.paginator) {
+  //     this.dataSource.paginator.firstPage();
+  //   }
+  // }
+
+  Filter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
+  
+    // Custom filter predicate to search across multiple fields
+    this.dataSource.filterPredicate = (data: Assignment, filter: string) => {
+      const searchString = filter.toLowerCase();
+      const formattedDate = new Date(data.dateDeRendu).toLocaleDateString('en-GB'); // Change the locale as per your date format
+  
+      return (
+        data.nom.toLowerCase().includes(searchString) ||  // Search in 'nom' field
+        data.id.toString().includes(searchString) ||      // Search in 'id' field
+        data.matiere.toLowerCase().includes(searchString) ||      // Search in 'matiere' field
+        formattedDate.includes(searchString) || // Search in formatted date field
+        (data.rendu ? 'rendu' : 'non rendu').includes(searchString) // Search in 'rendu' field
+        // Add more conditions for other fields if needed
+      );
+    };
+  
+    this.dataSource.filter = filterValue;
+  
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+  applyFilter() {
+    this.dataSource.filterPredicate = (data: Assignment, filter: string) => {
+      const renduText = data.rendu ? 'Rendu' : 'Non Rendu';
+      return this.filtreRendu === 'Tous' || renduText === this.filtreRendu;
+    };
+  
+    this.dataSource.filter = 'activate'; // To trigger the filtering process
+  }
+  
+  
 }

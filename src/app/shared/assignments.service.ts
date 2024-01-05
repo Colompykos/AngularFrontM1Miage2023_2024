@@ -17,16 +17,21 @@ export class AssignmentsService {
    //url = 'https://back-end-m1miage2023-2024-colompykos.onrender.com/api/assignments';
 
   assignments: Assignment[] = [];
-  private idCounter = 1;
+  private idCounter:any
 
   getAssignments(): Observable<Assignment[]> {
     return this.http.get<Assignment[]>(this.url);
     //  return of(this.assignments);
   }
 
-  getNewId(): number {
-    return this.assignments.length++;
-    //return this.idCounter++;
+  getNewId(): Observable<number> {
+    return new Observable<number>(subscriber => {
+      this.http.get<number>(this.url + "/lastid").subscribe(id => {
+        this.idCounter = id;
+        console.log(this.idCounter);
+        subscriber.next(this.idCounter + 1);
+      });
+    });
   }
 
   getAssignment(id: number): Observable<Assignment> {

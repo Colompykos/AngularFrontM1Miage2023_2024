@@ -29,7 +29,11 @@ export class AddAssignmentComponent {
   ngOnInit() {
     this.matiereService.getMatieres().subscribe((matieres) => {
       this.matieres = matieres;
+    this.assignmentsService.getNewId().subscribe((newId) => {
+      this.id = newId;
+      });
     });
+    
   }
   onSubmit(e:any){
     e.preventDefault();
@@ -38,7 +42,7 @@ export class AddAssignmentComponent {
     // console.log(this.dateDeRendu);
 
     const newAss: Assignment = new Assignment();
-    newAss.id = this.assignmentsService.getNewId();
+    newAss.id = this.id;
     newAss.nom = this.nomDevoir;
     newAss.auteur = this.auteur;
     newAss.matiere = this.matiere;
