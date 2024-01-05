@@ -21,7 +21,13 @@
       </a>
     </nav>
   </mat-list> -->
-  <table mat-table [dataSource]="assignments" matSort>
+
+  <mat-form-field>
+    <mat-label>Filter Table</mat-label>
+    <input matInput placeholder="Search in the table">
+  </mat-form-field>
+
+  <table mat-table [dataSource]="dataSource" matSort>
   <!-- Date de Rendu Column -->
   <ng-container matColumnDef="dateDeRendu">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Date de Rendu</th>
@@ -59,6 +65,7 @@
   <tr mat-header-row *matHeaderRowDef="['dateDeRendu', 'id', 'nom', 'rendu']"></tr>
   <tr mat-row *matRowDef="let row; columns: ['dateDeRendu', 'id', 'nom', 'rendu'];"></tr>
 </table>
+<mat-paginator [pageSizeOptions]="[2,4,6,8]" aria-labels="Select page of Assignments"></mat-paginator>
 </main>
 
 <!-- <app-assignment-detail

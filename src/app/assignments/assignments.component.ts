@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Assignment } from './assignment.model';
 import { AssignmentsService } from '../shared/assignments.service';
 import { AuthService } from '../shared/auth.service';
 import { Router } from '@angular/router';
 import {MatSort} from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-assignments',
@@ -11,6 +13,11 @@ import {MatSort} from '@angular/material/sort';
   styleUrls: ['./assignments.component.css'],
 })
 export class AssignmentsComponent implements OnInit{
+  @ViewChild(MatPaginator)  paginator : MatPaginator
+  @ViewChild(MatSort)  sort : MatSort
+
+  dataSource:MatTableDataSource<Assignment>
+  posts:any
 
   
   ajoutActive: boolean = false;
@@ -54,6 +61,10 @@ export class AssignmentsComponent implements OnInit{
   getAssignments(){
     this.assignmentsService.getAssignments().subscribe((assignments) => {
       this.assignments = assignments;
+      this.posts=this.assignments
+      this.dataSource = new MatTableDataSource(this.posts)
+      this.dataSource.paginator = this.paginator
+      this.dataSource.sort = this.sort
     });
 
 
