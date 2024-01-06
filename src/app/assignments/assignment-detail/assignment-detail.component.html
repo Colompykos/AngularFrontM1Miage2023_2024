@@ -20,7 +20,7 @@
 
 
     <div class="checkbox-content">
-      <mat-checkbox *ngIf="!assignmentTransmis.rendu" [disabled]="!(this.authService.isAdmine || this.authService.loggedIn)"  (click)="onAssignmentRendu()" class="checked-margin" [checked]="checked">Checked</mat-checkbox>
+      <mat-checkbox *ngIf="!assignmentTransmis.rendu" [disabled]="!(this.authService.isAdmine || this.authService.loggedIn) || !assignmentTransmis.note"  (click)="onAssignmentRendu()" class="checked-margin" [checked]="checked">Checked</mat-checkbox>
         <button mat-button [disabled]="!(this.authService.isAdmine || this.authService.loggedIn)" class="edit-assign" (click)="onClickEdit()" class="edit-elem">Edit</button>
       <button mat-button [disabled]="!this.authService.isAdmine" class="delete-assign" (click)="onDelete()">Delete Assignment</button>
     </div>

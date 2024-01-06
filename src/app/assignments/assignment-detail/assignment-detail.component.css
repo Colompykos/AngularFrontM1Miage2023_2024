@@ -50,6 +50,11 @@ img {
    margin-left: 10px;
 }
 
+mat-card-header {
+   display: flex;
+   justify-content: center;
+}
+
 
 
 
