@@ -77,6 +77,9 @@ export class EditAssignmentComponent {
       this.nomAssignment = assignment.nom;
       this.dateDeRendu = assignment.dateDeRendu;
       this.matiere = assignment.matiere;
+      this.note = assignment.note;
+      this.remarques = assignment.remarques;
+      this.auteur = assignment.auteur;
     });
   }
  

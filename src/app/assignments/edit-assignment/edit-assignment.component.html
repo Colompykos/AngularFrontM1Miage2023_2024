@@ -8,7 +8,6 @@
             <input matInput placeholder="Edition de l'auteur" [(ngModel)]="auteur" name="auteur">
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Matière"  name="matiere">
             <mat-select [(ngModel)]="assignment.matiere" name="matiere">
                 <mat-option *ngFor="let matiere of matieres" [value]="matiere.nom">{{matiere.nom}}</mat-option>
             </mat-select>

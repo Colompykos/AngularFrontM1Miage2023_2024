@@ -1,34 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+
 .checked-margin {
-margin: 0 10px;
- font-family: Tilt;
- font-size: 30px;
+   margin: 0 10px;
+   font-family: Tilt;
+   font-size: 30px;
 
-  }
+}
 
- .checkbox-content{
-    display: flex;
-    justify-content: space-between;
- } 
+.mat-card-title,
+.mat-card-subtitle {
+   display: block;
+   text-align: center;
+}
 
- .delete-assign{
-    background-color: #f39a14;
-    margin-left: 1rem;
-    /* margin-bottom: 0.5rem; */
-    margin-right: 32px;
-    align-items: center;
-    justify-content: center;
- }
+.checkbox-content {
+   display: flex;
+   justify-content: space-between;
+}
 
- .container{
+.delete-assign {
+   background-color: red;
+   margin-left: 1rem;
+   /* margin-bottom: 0.5rem; */
+   margin-right: 32px;
+   align-items: center;
+   justify-content: center;
+}
+
+.container {
    margin: 1rem 1rem 0rem 1rem;
-   box-shadow: 12px 15px 17px -8px rgba(243,154,20,0.79);
-   -webkit-box-shadow: 12px 15px 17px -8px rgba(243,154,20,0.79);
-   -moz-box-shadow: 12px 15px 17px -8px rgba(243,154,20,0.79);
-  }
+   box-shadow: 12px 15px 17px -8px rgba(20, 143, 243, 0.79);
+   -webkit-box-shadow: 12px 15px 17px -8px rgba(20, 143, 243, 0.79);
+   -moz-box-shadow: 12px 15px 17px -8px rgba(20, 143, 243, 0.79);
+}
 
-  .edit-elem{
+.edit-elem {
    margin-right: auto;
    margin-bottom: 0.5rem;
    margin-left: 1.5rem;
    background-color: #f39a14;
-  }
+}
+
+img {
+   border-radius: 50%;
+   width: 100px;
+   height: 100px;
+   display: flex;
+   margin-left: 10px;
+}
+
+
+
+
+
+
+
+.mat-card {
+   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
