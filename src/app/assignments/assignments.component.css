@@ -80,3 +80,36 @@ p{
     .mat-divider {
       margin: 0;
     }
+
+    .mat-cell{
+      font-size: 18px;
+    }
+
+    .filters{
+      display: flex;
+      justify-content: center;
+    }
+
+    .header-cell{
+      background-color: rgba(13, 70, 194, 0.432) !important;
+      font-family: Tilt;
+      font-size: 17px;
+    }
+
+    .header-first{
+      border-radius: 12px 0px 0px 0px!important;
+    }
+
+    .header-last{
+      border-radius: 0px 12px 0px 0px!important;
+    }
+
+    .table-line{
+      font-family: Tilt;
+    }
+    .table-line:hover{
+      background-color: rgba(13, 70, 194, 0.062) !important;
+      transition-duration: 0.3s;
+      color: rgb(124, 124, 124);
+      cursor: pointer;
+    }

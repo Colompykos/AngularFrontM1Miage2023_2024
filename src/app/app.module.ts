@@ -1,3 +1,4 @@
+import {MatPaginatorModule} from '@angular/material/paginator';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -33,7 +34,8 @@ import { RegisterComponent } from './log-sign/register/register.component';
 import { LoginComponent } from './log-sign/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatRadioModule} from '@angular/material/radio';
-
+import {MatTableModule} from '@angular/material/table';
+import {MatSortModule} from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -70,6 +72,9 @@ import {MatRadioModule} from '@angular/material/radio';
     MatOptionModule,
     ReactiveFormsModule,
     MatRadioModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule
   ],
   providers: [AssignmentsService],
   bootstrap: [AppComponent],
