@@ -33,14 +33,14 @@ export class AssignmentDetailComponent implements OnInit{
 
   ngOnInit(): void {
     const id = +this.route.snapshot.params["id"];
-    this.assignmentsService.getAssignment(id)
+    //this.assignmentsService.getAssignment(id)
      
     this.matiereService.getMatieres().subscribe((matieresFromDb) => {
       this.matieres = matieresFromDb;
       //this.matieres = matieresFromDb.filter(matiere => matiere.nom === this.assignmentTransmis.matiere);
     });
     this.assignmentsService.getAssignment(id)
-  .subscribe(ass => {
+    .subscribe(ass => {
     this.assignmentTransmis = ass;
     this.selectedMatiere = this.matieres.find(matiere => matiere.nom === this.assignmentTransmis.matiere);
   });
