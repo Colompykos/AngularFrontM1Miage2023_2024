@@ -7,7 +7,9 @@ import { Matiere } from './../assignments/assignment.model';
   providedIn: 'root'
 })
 export class MatiereService {
-  private apiUrl = 'http://localhost:8010/api/matieres'; // Remplacez par l'URL de votre API
+  // apiUrl = 'http://localhost:8010/api/matieres'; // Remplacez par l'URL de votre API
+  apiUrl = "https://back-end-m1miage2023-2024-colompykos.onrender.com/api/matieres";
+
 
   constructor(private http: HttpClient) { }
 

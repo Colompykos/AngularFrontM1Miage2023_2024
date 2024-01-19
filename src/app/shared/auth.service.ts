@@ -10,6 +10,8 @@ import Swal from 'sweetalert2';
 export class AuthService implements OnInit {
   form: FormGroup;
 
+  url = "https://back-end-m1miage2023-2024-colompykos.onrender.com/api/"
+
   loggedIn = false;
   isAdmine = false;
 
@@ -48,7 +50,7 @@ export class AuthService implements OnInit {
       });
     } else {
       this.http
-.post<any>('http://localhost:8010/api/login', user, {
+.post<any>(this.url + 'login', user, { 
           withCredentials: true,
         })
         .subscribe(
@@ -100,7 +102,7 @@ export class AuthService implements OnInit {
     // this.loggedIn = false;
     // this.isAdmine = false;
     this.http
-      .post('http://localhost:8010/api/logout', {}, { withCredentials: true }) // needs to be changed with the link of deployment
+      .post(this.url + 'logout', {}, { withCredentials: true }) // needs to be changed with the link of deployment
       .subscribe(() => {
         // Emitters.authEmitter.emit(false);
         this.loggedIn = false;
@@ -129,14 +131,14 @@ export class AuthService implements OnInit {
   };
 
   getUserData() {
-    return this.http.get<any>('http://localhost:8010/api/user', {
+    return this.http.get<any>(this.url + 'user', {
       withCredentials: true,
     });
   }
 
   checkauth() {
     this.http
-      .get('http://localhost:8010/api/checkAuth', { withCredentials: true })
+      .get(this.url + 'checkAuth', { withCredentials: true })
       .subscribe((response: any) => {
         this.loggedIn = response.loggedIn;
         if (response.isAdmin === 'true') {
@@ -168,7 +170,7 @@ export class AuthService implements OnInit {
       })
     }
     else{
-      this.http.post("http://localhost:8010/api/register",user,{
+      this.http.post(this.url + "register",user,{
         withCredentials:true
       })
       .subscribe(()=>{

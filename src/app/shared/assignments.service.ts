@@ -13,8 +13,8 @@ export class AssignmentsService {
     private http: HttpClient
   ) {}
 
-   url = 'http://localhost:8010/api/assignments';
-   //url = 'https://back-end-m1miage2023-2024-colompykos.onrender.com/api/assignments';
+   //url = 'http://localhost:8010/api/assignments';
+   url = 'https://back-end-m1miage2023-2024-colompykos.onrender.com/api/assignments';
 
   assignments: Assignment[] = [];
   private idCounter:any
