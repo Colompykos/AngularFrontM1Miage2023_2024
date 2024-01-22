@@ -7,7 +7,9 @@
         <mat-card-title style="text-align: center;">{{assignmentTransmis.nom}}</mat-card-title>
         <mat-card-subtitle>{{assignmentTransmis.dateDeRendu | date : 'dd/MM/yyyy' }}</mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image [src]="selectedMatiere?.image" alt="Image du professeur">
+    <div class="img-container">
+      <img mat-card-image [src]="selectedMatiere?.image" alt="Image du professeur" class="person-img">
+    </div>
     <mat-card-content>
       <div style="display: flex; flex-direction: row; justify-content: space-between;">
         <p><strong>Professeur :</strong> {{ selectedMatiere?.professeur }}</p>

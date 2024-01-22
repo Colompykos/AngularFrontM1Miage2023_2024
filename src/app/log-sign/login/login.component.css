@@ -21,8 +21,8 @@
 }
 .shape:first-child{
     background: linear-gradient(
-        #1845ad,
-        #23a2f6
+        rgba(189, 191, 197, 0.61),
+        #E5437D
     );
     left: -80px;
     top: -80px;
@@ -30,8 +30,8 @@
 .shape:last-child{
     background: linear-gradient(
         to right,
-        #ff512f,
-        #f09819
+        #df6e95,
+        rgba(34, 85, 240, 0.61)
     );
     right: -30px;
     bottom: -80px;
@@ -39,7 +39,7 @@
 form{
     height: 500px;
     width: 400px;
-    background-color: rgba(13, 70, 194, 0.61);
+    background-color: #e5437cc7;
     position: absolute;
     transform: translate(-50%,-50%);
     top: 50%;
@@ -88,7 +88,7 @@ button{
     margin-top: 35px;
     width: 100%;
     background-color: #ffffff;
-    color: rgba(13, 70, 194, 0.61) !important;
+    color: #E5437D !important;
     padding: 15px 0;
     font-size: 18px;
     font-weight: 600;

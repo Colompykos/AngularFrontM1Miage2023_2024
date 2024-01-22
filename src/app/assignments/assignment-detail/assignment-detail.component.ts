@@ -5,6 +5,7 @@ import { Assignment, Matiere } from './../assignment.model';
 import { AssignmentsService } from 'src/app/shared/assignments.service';
 import { MatiereService } from 'src/app/shared/matieres.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-assignment-detail',
@@ -20,7 +21,8 @@ export class AssignmentDetailComponent implements OnInit{
               private route:ActivatedRoute,
               private router:Router,
               public authService:AuthService,
-              private matiereService: MatiereService
+              private matiereService: MatiereService,
+              private toastr: ToastrService
               ) {}
 
   // @Input() assignmentTransmis!:Assignment;
@@ -61,6 +63,7 @@ export class AssignmentDetailComponent implements OnInit{
     this.assignmentsService.deleteAssignment(this.assignmentTransmis)
     .subscribe((reponse)=>{
       console.log(reponse.message);
+      this.toastr.success("assignment deleted successfully", 'Deleted');
       this.router.navigate(["home"])
     });
     this.assignmentTransmis=undefined;
