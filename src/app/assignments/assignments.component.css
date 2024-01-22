@@ -39,7 +39,7 @@ p{
 
   
   .btnajout:hover{
-    background-color: rgb(187, 181, 181);
+    background-color: #E5437D;
     color:white !important;
    }
    
@@ -49,7 +49,7 @@ p{
    
    .btnajout{
     margin: 1rem 2rem 0rem auto;
-    background-color:rgba(13, 70, 194, 0.61);
+    background-color:rgba(189, 191, 197, 0.61);
     justify-content: flex-end;
    }
    
@@ -88,10 +88,18 @@ p{
     .filters{
       display: flex;
       justify-content: center;
+      align-items: center;
+      margin-top: 2.5rem;
+      margin-bottom: 0.5rem;
+      gap: 2rem;
+    }
+
+    .search-icon{
+      color: rgba(13, 70, 194, 0.61);
     }
 
     .header-cell{
-      background-color: rgba(13, 70, 194, 0.432) !important;
+      background-color: rgba(189, 191, 197, 0.61) !important;
       font-family: Tilt;
       font-size: 17px;
     }
@@ -108,8 +116,9 @@ p{
       font-family: Tilt;
     }
     .table-line:hover{
-      background-color: rgba(13, 70, 194, 0.062) !important;
+      background-color: #e5437c0c !important;
       transition-duration: 0.3s;
       color: rgb(124, 124, 124);
       cursor: pointer;
     }
+  

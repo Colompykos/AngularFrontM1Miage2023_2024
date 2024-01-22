@@ -5,7 +5,7 @@ import { AuthService } from '../shared/auth.service';
 import { Router } from '@angular/router';
 import {MatSort} from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginator} from '@angular/material/paginator';
 
 @Component({
   selector: 'app-assignments',
@@ -105,14 +105,6 @@ export class AssignmentsComponent implements OnInit{
     // this.formVisible = true;
   }
 
-  // onNouvelAssignement(event: Assignment) {
-  //   // this.assignments.push(event);
-  //   this.assignmentsService.addAssignment(event)
-  //   .subscribe((message) => console.log(message));
-
-  //   // this.formVisible=false;
-    
-  // }
 
   ondeletedAssignment(event:Assignment){
     this.assignments.forEach((item,index)=>{
@@ -124,34 +116,6 @@ export class AssignmentsComponent implements OnInit{
   addAssignment(){
     this.router.navigate(['/add']);
   }
-
-  //   Filter(event:Event){
-  //   const filterValue = (event.target as HTMLInputElement).value;
-  //   this.dataSource.filter = filterValue.trim().toLowerCase()
-
-  //   if(this.dataSource.paginator){
-  //     this.dataSource.paginator.firstPage()
-  //   }
-  // }
-
-  // Filter(event:Event){
-
-  //   const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
-  
-  //   this.dataSource.filterPredicate = (data: Assignment, filter: string) => {
-  //     // Convertir la valeur de rendu en texte
-  //     const renduText = data.rendu ? 'rendu' : 'non rendu';
-  
-  //     // Vérifier si la valeur filtrée correspond à "rendu" ou "non rendu"
-  //     return renduText.includes(filter);
-  //   };
-  
-  //   this.dataSource.filter = filterValue;
-  
-  //   if (this.dataSource.paginator) {
-  //     this.dataSource.paginator.firstPage();
-  //   }
-  // }
 
   Filter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
@@ -166,7 +130,9 @@ export class AssignmentsComponent implements OnInit{
         data.id.toString().includes(searchString) ||      // Search in 'id' field
         data.matiere.toLowerCase().includes(searchString) ||      // Search in 'matiere' field
         formattedDate.includes(searchString) || // Search in formatted date field
-        (data.rendu ? 'rendu' : 'non rendu').includes(searchString) // Search in 'rendu' field
+        (data.rendu ? 'rendu' : 'non rendu').includes(searchString)||
+        data.auteur.toLowerCase().includes(searchString)    // Search in 'auteur' field
+         // Search in 'rendu' field
         // Add more conditions for other fields if needed
       );
     };
@@ -184,6 +150,10 @@ export class AssignmentsComponent implements OnInit{
     };
   
     this.dataSource.filter = 'activate'; // To trigger the filtering process
+  }
+
+  goToPage(pageNumber: number) {
+    this.paginator.pageIndex = pageNumber - 1;
   }
   
   

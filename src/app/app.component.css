@@ -1,7 +1,15 @@
+:host {
+  background-image: url('/assets/your-image.jpg');
+  background-size: cover;
+  background-position: center;
+}
 .toolbar{
+    margin: 1rem auto;
     display: flex;
-    background-color: rgba(13, 70, 194, 0.61);
+    background-color: rgba(189, 191, 197, 0.61);
     justify-content: space-evenly;
+    border-radius: 12px !important;
+    width: 95%;
 }
 .left-part{
     display: flex;
@@ -64,7 +72,7 @@
 
   button:hover{
     transition-duration: 0.1s;
-    background-color: #f39a14;
+    background-color: #E5437D;
   }
 
 .slide{
@@ -83,7 +91,7 @@
 
 .sidenav-element:hover {
   transition-duration: 0.1s;
-  background-color: rgba(13, 70, 194, 0.61) !important;
+  background-color: #E5437D !important;
   color: white;
 }
 

@@ -23,13 +23,13 @@
   </mat-list> -->
 
   <div class="filters">
-    
-    <mat-form-field>
+    <mat-form-field appearance="outline">
       <mat-label>Search on the table</mat-label>
       <input matInput placeholder="" search (keyup)="Filter($event)" #input>
+      <mat-icon matSuffix class="search-icon">search</mat-icon>
     </mat-form-field>
   
-    <mat-form-field>
+    <mat-form-field appearance="outline">
       <mat-label>Filtrer par Rendu</mat-label>
       <mat-select [(value)]="filtreRendu" (selectionChange)="applyFilter()">
         <mat-option value="Tous">Tous</mat-option>
@@ -61,7 +61,7 @@
 
   <!-- Nom Column -->
   <ng-container matColumnDef="nom">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-cell">Nom</th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-cell">Nom du rendu</th>
     <td mat-cell *matCellDef="let assignment">{{ assignment.nom }}</td>
   </ng-container>
 
@@ -70,6 +70,12 @@
     <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-cell">Matière</th>
     <td mat-cell *matCellDef="let assignment">{{ assignment.matiere }}</td>
   </ng-container>
+
+    <!-- Auteur Column -->
+    <ng-container matColumnDef="auteur">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-cell">Nom d'étudiant</th>
+      <td mat-cell *matCellDef="let assignment">{{ assignment.auteur }}</td>
+    </ng-container>
 
   <!-- Rendu Column -->
   <ng-container matColumnDef="rendu">
@@ -87,8 +93,8 @@
   
 
   <!-- Table Rows -->
-  <tr mat-header-row *matHeaderRowDef="['id', 'nom', 'matiere', 'dateDeRendu', 'rendu']"></tr>
-  <tr mat-row *matRowDef="let assignment; columns: ['id', 'nom', 'matiere', 'dateDeRendu', 'rendu'];" [routerLink]="['/assignments', assignment.id]" class="table-line"></tr>
+  <tr mat-header-row *matHeaderRowDef="['id', 'nom', 'matiere','auteur', 'dateDeRendu', 'rendu']"></tr>
+  <tr mat-row *matRowDef="let assignment; columns: ['id', 'nom', 'matiere', 'auteur', 'dateDeRendu', 'rendu'];" [routerLink]="['/assignments', assignment.id]" class="table-line"></tr>
 
   <!-- While filtering and not findinf any data -->
   <tr *matNoDataRow>
@@ -96,10 +102,6 @@
     </td>
   </tr>
 </table>
-<mat-paginator [pageSizeOptions]="[5,10,25,100]" aria-labels="Select page of Assignments"></mat-paginator>
+<mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25,100]" showFirstLastButtons></mat-paginator>
 </main>
 
-<!-- <app-assignment-detail
-  [assignmentTransmis]="assignementSelectionne"
-  (deletedAssignment)="ondeletedAssignment($event)"
-></app-assignment-detail> -->
