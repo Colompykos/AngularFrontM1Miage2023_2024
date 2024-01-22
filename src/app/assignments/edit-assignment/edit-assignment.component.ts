@@ -3,6 +3,7 @@ import { MatiereService } from 'src/app/shared/matieres.service';
 import { Component } from '@angular/core';
 import { Assignment, Matiere } from '../assignment.model';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-edit-assignment',
@@ -35,7 +36,8 @@ export class EditAssignmentComponent {
   constructor(private assignmentsService:AssignmentsService,
              private route: ActivatedRoute,
              private router: Router,
-             private matiereService: MatiereService
+             private matiereService: MatiereService,
+             private toastr: ToastrService
  ){}
 
   onSaveAssignment(){
@@ -57,6 +59,7 @@ export class EditAssignmentComponent {
       .updateAssignment(this.assignment)
       .subscribe((reponse) => {
         console.log(reponse.message);
+        this.toastr.success("Assignment updated successfully", "");
  
         // navigation vers la home page
         this.router.navigate(['/home']);

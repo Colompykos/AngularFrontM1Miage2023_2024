@@ -3,7 +3,7 @@ import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import Swal from 'sweetalert2';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root',
@@ -26,22 +26,15 @@ export class AuthService implements OnInit {
   constructor(
     private router: Router,
     private http: HttpClient,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private toastr: ToastrService
   ) {}
 
   login(user: { email: string; password: string }) {
     if (user.email === '' || user.password === '') {
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Please fill all the fields!',
-      });
+      this.toastr.error('Please fill all the fields!', 'Oops...');
     } else if (!this.ValidateEmail(user.email)) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Please enter a valid email!',
-      });
+      this.toastr.error('Please enter a valid email!', 'Oops...');
     } else {
       this.http
         .post<any>(this.url + 'login', user, { 
@@ -49,7 +42,7 @@ export class AuthService implements OnInit {
         })
         .subscribe(
           (res) => {
-            Swal.fire('Success', "You're logged in", 'success');
+            this.toastr.success("You're logged in", 'Success');
             this.router.navigate(['/home']);
 
             this.getUserData().subscribe((userData) => {
@@ -71,7 +64,7 @@ export class AuthService implements OnInit {
           },
           (err) => {
             console.log(err);
-            Swal.fire('Error', err.error.message, 'error');
+            this.toastr.error(err.error.message, 'Error');
           }
         );
     }
@@ -94,18 +87,10 @@ export class AuthService implements OnInit {
 
   register(user: { name: string; email: string; password: string; isAdmin: string }) {
     if (user.name === "" || user.email === "" || user.password === "" || user.isAdmin === "") {
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Please fill all the fields!',
-      })
+      this.toastr.error('Please fill all the fields!', 'Oops...');
     }
     else if (!this.ValidateEmail(user.email)) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Please enter a valid email!',
-      })
+      this.toastr.error('Please enter a valid email!', 'Oops...');
     }
     else {
       this.http.post<any>(this.url + "register", user, {
@@ -113,7 +98,7 @@ export class AuthService implements OnInit {
       })
         .subscribe((res) => {
           this.router.navigate(["/home"]);
-          Swal.fire("Success", "User created", "success");
+          this.toastr.success("User created", "Success");
 
           this.getUserData().subscribe((userData) => {
             if (userData.isAdmin === 'true') {
@@ -131,7 +116,7 @@ export class AuthService implements OnInit {
           // Store the token in local storage
           localStorage.setItem('jwtToken', token);
         }, (err) => {
-          Swal.fire("Error", err.error.emailState, "error");
+          this.toastr.error(err.error.emailState, "Error");
         });
     }
   }

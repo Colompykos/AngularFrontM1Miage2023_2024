@@ -37,6 +37,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import { JwtInterceptor } from './shared/jwt-interceptor.service';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -76,7 +77,11 @@ import { JwtInterceptor } from './shared/jwt-interceptor.service';
     MatRadioModule,
     MatTableModule,
     MatSortModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      progressBar:true
+    }),
   ],
   providers: [AssignmentsService,
     {

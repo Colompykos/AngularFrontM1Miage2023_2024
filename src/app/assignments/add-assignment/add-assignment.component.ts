@@ -1,9 +1,10 @@
-import { Component, OnInit/*EventEmitter, Output*/ } from '@angular/core';
+import { Component} from '@angular/core';
 import { Assignment, Matiere } from '../assignment.model';
 import { AssignmentsService } from 'src/app/shared/assignments.service';
 import { MatiereService } from 'src/app/shared/matieres.service';
 import { Router } from '@angular/router';
-import Swal from 'sweetalert2';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-add-assignment',
@@ -16,7 +17,7 @@ export class AddAssignmentComponent {
   matieres: Matiere[] = [];
   // ...
 
-  constructor( private assignmentsService:AssignmentsService, private router:Router, private matiereService: MatiereService){}
+  constructor( private assignmentsService:AssignmentsService, private router:Router, private matiereService: MatiereService, private toastr: ToastrService){}
   auteur:string = "";
   matiere: string;
   nomDevoir:string = "";
@@ -55,12 +56,8 @@ export class AddAssignmentComponent {
       .subscribe((reponse) => {
         console.log(reponse.message);
         this.router.navigate(['home']);
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "Your work has been added",
-          showConfirmButton: false,
-          timer: 1500
+        this.toastr.success("Your work has been added", "", {
+          timeOut: 3500
         });
 
       });
