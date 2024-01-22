@@ -27,7 +27,7 @@ import { AddAssignmentComponent } from './assignments/add-assignment/add-assignm
 import { AssignmentsService } from './shared/assignments.service';
 import { EditAssignmentComponent } from './assignments/edit-assignment/edit-assignment.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { RegisterComponent } from './log-sign/register/register.component';
@@ -36,6 +36,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
+import { JwtInterceptor } from './shared/jwt-interceptor.service';
+
 
 @NgModule({
   declarations: [
@@ -76,7 +78,13 @@ import {MatSortModule} from '@angular/material/sort';
     MatSortModule,
     MatPaginatorModule
   ],
-  providers: [AssignmentsService],
+  providers: [AssignmentsService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

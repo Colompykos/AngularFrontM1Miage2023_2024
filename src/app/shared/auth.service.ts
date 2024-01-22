@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+// auth.service.ts
 import { Injectable, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
@@ -9,6 +10,8 @@ import Swal from 'sweetalert2';
 })
 export class AuthService implements OnInit {
   form: FormGroup;
+
+  url = "https://back-end-m1miage2023-2024-colompykos.onrender.com/api/"
 
   loggedIn = false;
   isAdmine = false;
@@ -20,11 +23,6 @@ export class AuthService implements OnInit {
     });
   }
 
-  // users = [
-  //   {username: 'admin', password: 'admin', role: 'admin'},
-  //   {username: 'user', password: 'user', role: 'user'}
-  // ];
-
   constructor(
     private router: Router,
     private http: HttpClient,
@@ -32,8 +30,6 @@ export class AuthService implements OnInit {
   ) {}
 
   login(user: { email: string; password: string }) {
-    console.log(user);
-
     if (user.email === '' || user.password === '') {
       Swal.fire({
         icon: 'error',
@@ -48,7 +44,7 @@ export class AuthService implements OnInit {
       });
     } else {
       this.http
-.post<any>('http://localhost:8010/api/login', user, {
+        .post<any>(this.url + 'login', user, { 
           withCredentials: true,
         })
         .subscribe(
@@ -67,46 +63,91 @@ export class AuthService implements OnInit {
                 console.log('User is not admin');
               }
             });
+
+            const token = res.token;
+
+            // Store the token in local storage
+            localStorage.setItem('jwtToken', token);
           },
           (err) => {
             console.log(err);
             Swal.fire('Error', err.error.message, 'error');
-            // Emitters.authEmitter.emit(false);
           }
         );
     }
   }
 
-  // logIn(username: string, password: string) {
+  checkauth() {
+    this.http
+      .get(this.url + 'checkAuth', { withCredentials: true })
+      .subscribe((response: any) => {
+        this.loggedIn = response.loggedIn;
+        if (response.isAdmin === 'true') {
+          this.isAdmine = true;
+        } else {
+          this.isAdmine = false;
+        }
+        console.log(this.loggedIn);
+        console.log(this.isAdmine);
+      });
+  }
 
-  //   const user = this.users.find(u => u.username === username && u.password === password);
-  //   //if (user) {
-  //     if (username === 'admin' && password === 'admin') {
-  //     this.loggedIn = true;
-  //     this.isAdmin = true;
-  //     } else if (username === 'user' && password === 'user') {
-  //     this.loggedIn = true;
-  //     this.isAdmin = false;
-  //     }
+  register(user: { name: string; email: string; password: string; isAdmin: string }) {
+    if (user.name === "" || user.email === "" || user.password === "" || user.isAdmin === "") {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Please fill all the fields!',
+      })
+    }
+    else if (!this.ValidateEmail(user.email)) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Please enter a valid email!',
+      })
+    }
+    else {
+      this.http.post<any>(this.url + "register", user, {
+        withCredentials: true
+      })
+        .subscribe((res) => {
+          this.router.navigate(["/home"]);
+          Swal.fire("Success", "User created", "success");
 
-  //     console.log(`User ${username} is connected as  ${this.isAdmin ? 'admin' : 'utilisateur'}.`);
-  //     console.log('IsAdmin : ' + this.isAdmin);
-  //     console.log('IsLoggedIn : ' + this.loggedIn);
-  //     this.router.navigate(['/home']);
+          this.getUserData().subscribe((userData) => {
+            if (userData.isAdmin === 'true') {
+              this.loggedIn = true;
+              this.isAdmine = true;
+              console.log('User is admin');
+            } else {
+              this.loggedIn = true;
+              this.isAdmine = false;
+              console.log('User is not admin');
+            }
+          });
 
-  //   }
+          const token = res.token;
+          // Store the token in local storage
+          localStorage.setItem('jwtToken', token);
+        }, (err) => {
+          Swal.fire("Error", err.error.emailState, "error");
+        });
+    }
+  }
 
   SignOut() {
-    // this.loggedIn = false;
-    // this.isAdmine = false;
     this.http
-      .post('http://localhost:8010/api/logout', {}, { withCredentials: true }) // needs to be changed with the link of deployment
+      .post(this.url + 'logout', {}, { withCredentials: true })
       .subscribe(() => {
-        // Emitters.authEmitter.emit(false);
         this.loggedIn = false;
         this.isAdmine = false;
         console.log('User signed out');
       });
+
+    // Remove the token from local storage on logout
+    localStorage.removeItem('jwtToken');
+    document.cookie = "jwt=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; secure; samesite=None;";
 
     this.router.navigate(['/login']);
   }
@@ -129,65 +170,8 @@ export class AuthService implements OnInit {
   };
 
   getUserData() {
-    return this.http.get<any>('http://localhost:8010/api/user', {
+    return this.http.get<any>(this.url + 'user', {
       withCredentials: true,
     });
-  }
-
-  checkauth() {
-    this.http
-      .get('http://localhost:8010/api/checkAuth', { withCredentials: true })
-      .subscribe((response: any) => {
-        this.loggedIn = response.loggedIn;
-        if (response.isAdmin === 'true') {
-          this.isAdmine = true;
-        } else {
-          this.isAdmine = false;
-        }
-        console.log(this.loggedIn);
-        console.log(this.isAdmine);
-      });
-  }
-
-  register(user: { name:string ; email: string; password: string; isAdmin:string }){
-
-    console.log(user);
-
-    if(user.name==""|| user.email=="" || user.password=="" || user.isAdmin === ""){
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Please fill all the fields!',
-      })
-    }
-    else if(!this.ValidateEmail(user.email)){
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Please enter a valid email!',
-      })
-    }
-    else{
-      this.http.post("http://localhost:8010/api/register",user,{
-        withCredentials:true
-      })
-      .subscribe(()=>{
-        this.router.navigate(["/home"]);
-        Swal.fire("Success", "User created", "success");
-        this.getUserData().subscribe((userData) => {
-          if (userData.isAdmin === 'true') {
-            this.loggedIn = true;
-            this.isAdmine = true;
-            console.log('User is admin');
-          } else {
-            this.loggedIn = true;
-            this.isAdmine = false;
-            console.log('User is not admin');
-          }
-        });
-      }, (err) => {
-        Swal.fire("Error", err.error.emailState, "error");
-      });
-    }
   }
 }
