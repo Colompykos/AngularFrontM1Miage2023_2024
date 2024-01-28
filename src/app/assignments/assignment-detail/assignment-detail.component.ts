@@ -1,11 +1,11 @@
-import { LoggingService } from './../../shared/logging.service';
 import { AuthService } from './../../shared/auth.service';
-import { Component, EventEmitter, /*Input*/ OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Assignment, Matiere } from './../assignment.model';
 import { AssignmentsService } from 'src/app/shared/assignments.service';
 import { MatiereService } from 'src/app/shared/matieres.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-assignment-detail',
@@ -30,23 +30,21 @@ export class AssignmentDetailComponent implements OnInit{
   // @Output() deletedAssignment = new EventEmitter<Assignment>();
 
   checked:boolean = false;
-
   
-
   ngOnInit(): void {
-    const id = +this.route.snapshot.params["id"];
-    //this.assignmentsService.getAssignment(id)
-     
-    this.matiereService.getMatieres().subscribe((matieresFromDb) => {
-      this.matieres = matieresFromDb;
-      //this.matieres = matieresFromDb.filter(matiere => matiere.nom === this.assignmentTransmis.matiere);
-    });
-    this.assignmentsService.getAssignment(id)
-    .subscribe(ass => {
+  const id = +this.route.snapshot.params["id"];
+
+  // Utiliser forkJoin pour combiner les résultats de deux appels HTTP
+  forkJoin([
+    this.assignmentsService.getAssignment(id),
+    this.matiereService.getMatieres()
+  ]).subscribe(([ass, matieresFromDb]) => {
     this.assignmentTransmis = ass;
+    this.matieres = matieresFromDb;
+
+    // Trouver la matière associée à l'assignment
     this.selectedMatiere = this.matieres.find(matiere => matiere.nom === this.assignmentTransmis.matiere);
   });
-
 
     }
 

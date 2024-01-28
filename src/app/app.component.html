@@ -49,18 +49,6 @@
           <mat-icon>add</mat-icon>
           <a routerLink="/add" [class.disabled-link]="!(authService.isAdmine || authService.loggedIn)">Ajout d'un devoir</a>
         </button>
-        <button class="sidenav-element" [ngClass]="{ 'disabled-button': !(authService.isAdmine || authService.loggedIn) }">
-          <mat-icon>edit</mat-icon>
-          <a href="" [class.disabled-link]="!(authService.isAdmine || authService.loggedIn)">Modification d'un devoir</a>
-        </button>
-        <button class="sidenav-element" [ngClass]="{ 'disabled-button': !authService.isAdmine }">
-          <mat-icon>delete</mat-icon>
-          <a href="" [class.disabled-link]="!authService.isAdmine">Suppression d'un devoir</a>
-        </button>
-        <button class="sidenav-element" [ngClass]="{ 'disabled-button': !authService.isAdmine }">
-          <mat-icon>data_usage</mat-icon>
-          <a href="" [class.disabled-link]="!authService.isAdmine">Génération de données de test</a>
-        </button>
       </div>
     </mat-drawer>
     

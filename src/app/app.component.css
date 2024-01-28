@@ -1,8 +1,3 @@
-:host {
-  background-image: url('/assets/your-image.jpg');
-  background-size: cover;
-  background-position: center;
-}
 .toolbar{
     margin: 1rem auto;
     display: flex;

@@ -1,31 +1,31 @@
 <div class="container" *ngIf="assignment">
     <h3>Edition de l'assignment {{assignment.nom}}</h3>
     <form ngForm class="form" #formupdate (submit)="onSaveAssignment(); formupdate.reset(); ">
-        <mat-form-field>
+        <mat-form-field appearance="outline">
             <input matInput placeholder="Edition du nom" [(ngModel)]="nomAssignment" name="assignment-name">
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
             <input matInput placeholder="Edition de l'auteur" [(ngModel)]="auteur" name="auteur">
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
             <mat-select [(ngModel)]="assignment.matiere" name="matiere">
                 <mat-option *ngFor="let matiere of matieres" [value]="matiere.nom">{{matiere.nom}}</mat-option>
             </mat-select>
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
             <input matInput placeholder="Remarques" [(ngModel)]="remarques" name="remarques">
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
             <input matInput placeholder="Edition de la note" [(ngModel)]="note" name="note">
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
             <input matInput [matDatepicker]="picker" placeholder="Edition de la date" [(ngModel)]="dateDeRendu"
                 name="date">
             <mat-datepicker-toggle matSuffix [for]="picker">
             </mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
-        <button mat-raised-button color="primary" [disabled]="((!nomAssignment)||(!dateDeRendu))" class="btn-save">
+        <button mat-raised-button color="accent" [disabled]="((!nomAssignment)||(!dateDeRendu))" class="btn-save">
             Save
         </button>
     </form>

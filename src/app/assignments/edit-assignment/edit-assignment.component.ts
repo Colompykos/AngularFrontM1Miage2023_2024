@@ -12,35 +12,35 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class EditAssignmentComponent {
   assignment: Assignment;
-  nomAssignment:string;
-  dateDeRendu:Date;
-  matiere:string;
-  note:number;
-  remarques:string;
-  auteur:string;
+  nomAssignment: string;
+  dateDeRendu: Date;
+  matiere: string;
+  note: number;
+  remarques: string;
+  auteur: string;
 
   matieres: Matiere[] = [];
 
-  ngOnInit():void{
+  ngOnInit(): void {
     this.matiereService.getMatieres().subscribe((matieres) => {
       this.matieres = matieres;
       this.getAssignment();
 
-      
+
     });
 
-    
+
   }
-  
 
-  constructor(private assignmentsService:AssignmentsService,
-             private route: ActivatedRoute,
-             private router: Router,
-             private matiereService: MatiereService,
-             private toastr: ToastrService
- ){}
 
-  onSaveAssignment(){
+  constructor(private assignmentsService: AssignmentsService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private matiereService: MatiereService,
+    private toastr: ToastrService
+  ) { }
+
+  onSaveAssignment() {
     // event.preventDefault();
 
     if (!this.assignment) return;
@@ -60,19 +60,19 @@ export class EditAssignmentComponent {
       .subscribe((reponse) => {
         console.log(reponse.message);
         this.toastr.success("Assignment updated successfully", "");
- 
+
         // navigation vers la home page
         this.router.navigate(['/home']);
       });
-      console.log(this.assignment.nom);
-      //console.log(this.assignment.matiere);
+    console.log(this.assignment.nom);
+    //console.log(this.assignment.matiere);
   }
 
   getAssignment() {
     // on récupère l'id dans le snapshot passé par le routeur
     // le "+" force l'id de type string en "number"
     const id = +this.route.snapshot.params['id'];
-   
+
     this.assignmentsService.getAssignment(id).subscribe((assignment) => {
       if (!assignment) return;
       this.assignment = assignment;
@@ -85,8 +85,6 @@ export class EditAssignmentComponent {
       this.auteur = assignment.auteur;
     });
   }
- 
-
 
 
 }
