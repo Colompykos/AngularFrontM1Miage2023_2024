@@ -6,6 +6,10 @@ Repository où déposer le projet Final en binôme Angular
 
 ### Prénom[^2] : Marouane , Mohamed
 
+## Les liens : 
+- Lien vers le front : https://app-miage-assignments.netlify.app/
+- Lien pour la vidéo : https://www.dropbox.com/scl/fi/wvqafvh6wi6jn0m9t5t30/App-assignments.mp4?rlkey=3hhbqj9x77qjk14yl6nh2nmi8&dl=0
+
 ## A faire[^3]
 - [x] Suivre le cours jusqu'à la page 180
 - [x] Intégrer toolbar et navbar du rendu n°1
