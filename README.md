@@ -2,39 +2,33 @@
 # Angular : rendu final
 Repository où déposer le projet Final en binôme Angular
 
-### Nom[^1] : TAKI EDINE , GHOUL
+### Nom : TAKI EDINE , GHOUL
 
-### Prénom[^2] : Marouane , Mohamed
+### Prénom : Marouane , Mohamed
 
 ## Les liens : 
 - Lien vers le front : https://app-miage-assignments.netlify.app/
+- Lien vers le Backend : https://back-end-m1miage2023-2024-colompykos.onrender.com/api/assignments
 - Lien git du Backend : https://github.com/Colompykos/Back-End-M1Miage2023_2024
 - Lien pour la vidéo : https://www.dropbox.com/scl/fi/wvqafvh6wi6jn0m9t5t30/App-assignments.mp4?rlkey=3hhbqj9x77qjk14yl6nh2nmi8&dl=0
 
-## A faire[^3]
-- [x] Suivre le cours jusqu'à la page 180
-- [x] Intégrer toolbar et navbar du rendu n°1
-- [x] Identification par **login/password**
-  - ajouter un tableau de login/password/role (avec rôle qui est soit **user** soit **admin**) dans le service d'authentification
-  - modifier le code pour avoir `isLogged()` **ET** `isAdmin()` au lieu de juste `isAdmin()`
-- [x] Au lieu du slider `LogIn`, ajouter un bouton connecter (avec une *mat-icon* adaptée) qui amène à un composant avec un formulaire de connexion
+## A faire
+- [x] Ajout des 1000 assignments.
+- [x] Intégration toolbar et navbar.
+- [x] Droit d'acces user, admin, non connecté.
+- [x] Identification par **login/password** avec authentification a l'aide de Json Web Tokens (Avancée ++)
+  - Avec creation de compte(Sign up) et connexion(Log in).
+- [x] Ajout des details assignements : Matieres, Auteurs, Notes, Image professeur et Remarques.
+- [x] Ajout de collection Matieres et Users dans le Backend (Approche Avancée).  
 - [x] Gestion des droits :
-  - L'admin peut éditer et effacer les assignment
-  - Le user peut voir le détail des assignment
-  - Si on n'est pas logué on ne peut ni voir le détail, ni éditer
+  - L'admin peut éditer, ajouté et supprimer les assignment.
+  - Le user peut voir le détail des assignment et ajouté un assignement.
+  - Si on n'est pas logué on peut voir la liste des assignemnts et leurs détail uniquements.
+  - On peut marquée un assignment rendue que si il a été noté.
+- [x] Ajout d'un tableau d'assignement triable avec pagination.
+- [x] Choix fixe des matieres dans les formulaire d'ajout et d'édition.
+- [x] Ajout de filtre rendu/non rendu et ajout d'une barre de recherche.
+- [x] Ajout d'un formulaire steper pour l'ajout d'un assignment.
+- [x] Ajout de notification a chaque action.
 
-## NB : 
-Les différents niveaux d'accès:
--User non connecté : il ne peut rien faire  - état avant connexion
--User connecté : connexion (username="user" - Password="user") - il peut voir les assignments et leurs détails
--Administrateur connecté : connexion (username="admin" - Password="admin") :
-            - Il peut voir les assignments et leurs détails
-            - Il peut ajouter un assignment
-            - Il peut supprimer un assignment
-            - Il peut modifier un assignment
-            - Il peut checker un assignment
-            
-
-[^1]: à remplir
-[^2]: à remplir
-[^3]: vous pouvez cocher les tâches qui ont été faites en utilisant la syntaxe `[x]` dans le markdown
+Démonstration et résumé des fonctionnalité dans le lien de la video ci-dessus.
