@@ -45,29 +45,9 @@ export class AppComponent implements OnInit {
     this.router.navigate(["/home"])
   }
 
-  // login(){
-  //   if (this.authservice.loggedIn){
-  //     this.authservice.SignOut();
-  //     this.router.navigate(['/home'])
-  //   }
-  //   else{
-  //     this.authservice.LogIn();
-  //   }
-  // }
-
   LogOut():void{
-
-    // this.authService.loggedIn = false
-    // this.authService.isAdmin=false
-
-    // this.http.post('http://localhost:8010/api/logout',{},{withCredentials:true})
-    // .subscribe(()=> this.authenticated=false)
-
-    // this.router.navigate(['/login']);
-
 
     this.authService.SignOut();
     // this.authenticated=false
-
   }
 }

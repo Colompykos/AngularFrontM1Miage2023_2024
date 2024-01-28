@@ -1,26 +1,8 @@
-<main class="container">
+<main class="container background-container">
   <div class="btnadd-container">
     <button mat-button *ngIf="authService.loggedIn" (click)="addAssignment()" class="btnajout">Add assignment</button>
   </div>
-    <!-- Page Heading -->
-  <!-- <mat-list *ngFor="let assignment of assignments">
-    <nav>
-      <a routerLink="/assignments/{{assignment.id}}">
-        <h3 mat-subheader class="mat-subheader">
-          {{ assignment.dateDeRendu | date : "dd/MM/yyyy" }}
-        </h3>
-        <mat-list-item (click)="assignmentClique(assignment)">
-          <p appRendu *ngIf="assignment.rendu; else nonSoumis">
-           {{assignment.id}} - Devoir intitulé {{ assignment.nom }} a été rendu.
-          </p>
-          <ng-template #nonSoumis>
-            {{assignment.id}} - Le devoir intitulé {{ assignment.nom }} n'a pas été rendu.
-          </ng-template>
-        </mat-list-item>
-        <mat-divider></mat-divider>
-      </a>
-    </nav>
-  </mat-list> -->
+  <!-- Page Heading -->
 
   <div class="filters">
     <mat-form-field appearance="outline">
@@ -28,7 +10,7 @@
       <input matInput placeholder="" search (keyup)="Filter($event)" #input>
       <mat-icon matSuffix class="search-icon">search</mat-icon>
     </mat-form-field>
-  
+
     <mat-form-field appearance="outline">
       <mat-label>Filtrer par Rendu</mat-label>
       <mat-select [(value)]="filtreRendu" (selectionChange)="applyFilter()">
@@ -40,7 +22,7 @@
 
   </div>
 
-  
+
 
   <table mat-table [dataSource]="dataSource" matSort>
 
@@ -49,27 +31,27 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-cell header-first">ID</th>
       <td mat-cell *matCellDef="let assignment">{{ assignment.id }}</td>
     </ng-container>
-    
-  <!-- Date de Rendu Column -->
-  <ng-container matColumnDef="dateDeRendu">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-cell">Date de Rendu</th>
-    <td mat-cell *matCellDef="let assignment">
-      {{ assignment.dateDeRendu | date : 'dd/MM/yyyy' }}
-    </td>
-  </ng-container>
+
+    <!-- Date de Rendu Column -->
+    <ng-container matColumnDef="dateDeRendu">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-cell">Date de Rendu</th>
+      <td mat-cell *matCellDef="let assignment">
+        {{ assignment.dateDeRendu | date : 'dd/MM/yyyy' }}
+      </td>
+    </ng-container>
 
 
-  <!-- Nom Column -->
-  <ng-container matColumnDef="nom">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-cell">Nom du rendu</th>
-    <td mat-cell *matCellDef="let assignment">{{ assignment.nom }}</td>
-  </ng-container>
+    <!-- Nom Column -->
+    <ng-container matColumnDef="nom">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-cell">Nom du rendu</th>
+      <td mat-cell *matCellDef="let assignment">{{ assignment.nom }}</td>
+    </ng-container>
 
-  <!-- Matière Column -->
-  <ng-container matColumnDef="matiere">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-cell">Matière</th>
-    <td mat-cell *matCellDef="let assignment">{{ assignment.matiere }}</td>
-  </ng-container>
+    <!-- Matière Column -->
+    <ng-container matColumnDef="matiere">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-cell">Matière</th>
+      <td mat-cell *matCellDef="let assignment">{{ assignment.matiere }}</td>
+    </ng-container>
 
     <!-- Auteur Column -->
     <ng-container matColumnDef="auteur">
@@ -77,31 +59,32 @@
       <td mat-cell *matCellDef="let assignment">{{ assignment.auteur }}</td>
     </ng-container>
 
-  <!-- Rendu Column -->
-  <ng-container matColumnDef="rendu">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-cell header-last">Etat</th>
-    <td mat-cell *matCellDef="let assignment">
-      <ng-container *ngIf="assignment.rendu; else nonSoumis">
-        Rendu
-      </ng-container>
-      <ng-template #nonSoumis>
-        Non Rendu
-      </ng-template>
-    </td>
-  </ng-container>
+    <!-- Rendu Column -->
+    <ng-container matColumnDef="rendu">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-cell header-last">Etat</th>
+      <td mat-cell *matCellDef="let assignment">
+        <ng-container *ngIf="assignment.rendu; else nonSoumis">
+          Rendu
+        </ng-container>
+        <ng-template #nonSoumis>
+          Non Rendu
+        </ng-template>
+      </td>
+    </ng-container>
 
-  
 
-  <!-- Table Rows -->
-  <tr mat-header-row *matHeaderRowDef="['id', 'nom', 'matiere','auteur', 'dateDeRendu', 'rendu']"></tr>
-  <tr mat-row *matRowDef="let assignment; columns: ['id', 'nom', 'matiere', 'auteur', 'dateDeRendu', 'rendu'];" [routerLink]="['/assignments', assignment.id]" class="table-line"></tr>
 
-  <!-- While filtering and not findinf any data -->
-  <tr *matNoDataRow>
-    <td class="mat-cell" colspan="4"> There's no match on the table for this text : {{input.value}}
-    </td>
-  </tr>
-</table>
-<mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25,100]" showFirstLastButtons></mat-paginator>
+    <!-- Table Rows -->
+    <tr mat-header-row *matHeaderRowDef="['id', 'nom', 'matiere','auteur', 'dateDeRendu', 'rendu']"></tr>
+    <tr mat-row *matRowDef="let assignment; columns: ['id', 'nom', 'matiere', 'auteur', 'dateDeRendu', 'rendu'];"
+      [routerLink]="['/assignments', assignment.id]" class="table-line"></tr>
+
+    <!-- While filtering and not findinf any data -->
+    <tr *matNoDataRow>
+      <td class="mat-cell" colspan="4"> There's no match on the table for this text : {{input.value}}
+      </td>
+    </tr>
+  </table>
+  <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25,100]"
+    showFirstLastButtons></mat-paginator>
 </main>
-

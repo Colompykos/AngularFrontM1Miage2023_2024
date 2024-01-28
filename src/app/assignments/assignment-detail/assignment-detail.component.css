@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
-
 .checked-margin {
    margin: 0 10px;
    font-family: Tilt;
@@ -45,7 +44,6 @@ mat-card-header {
    display: flex;
    justify-content: center;
    align-items: center;
-   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 mat-card-subtitle{
@@ -69,5 +67,9 @@ mat-card-subtitle{
    object-fit: cover;
  }
 .mat-card {
-   font-family: Roboto, "Helvetica Neue", sans-serif;
+   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serifs;
+}
+
+mat-card-title{
+   font-size: 25px;
 }

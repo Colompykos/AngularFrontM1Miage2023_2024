@@ -38,6 +38,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import { JwtInterceptor } from './shared/jwt-interceptor.service';
 import { ToastrModule } from 'ngx-toastr';
+import {MatStepperModule} from '@angular/material/stepper';
 
 
 @NgModule({
@@ -82,6 +83,7 @@ import { ToastrModule } from 'ngx-toastr';
       timeOut: 3000,
       progressBar:true
     }),
+    MatStepperModule,
   ],
   providers: [AssignmentsService,
     {

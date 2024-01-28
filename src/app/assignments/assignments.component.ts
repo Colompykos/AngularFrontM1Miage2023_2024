@@ -132,8 +132,7 @@ export class AssignmentsComponent implements OnInit{
         formattedDate.includes(searchString) || // Search in formatted date field
         (data.rendu ? 'rendu' : 'non rendu').includes(searchString)||
         data.auteur.toLowerCase().includes(searchString)    // Search in 'auteur' field
-         // Search in 'rendu' field
-        // Add more conditions for other fields if needed
+    
       );
     };
   
@@ -155,6 +154,4 @@ export class AssignmentsComponent implements OnInit{
   goToPage(pageNumber: number) {
     this.paginator.pageIndex = pageNumber - 1;
   }
-  
-  
 }

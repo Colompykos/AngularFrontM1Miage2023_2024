@@ -2,6 +2,10 @@
     font-family: Tilt;
     src: url(assets/fonts/TiltNeon-Regular.ttf) format('truetype');
 }
+@font-face {
+    font-family: SingleDay;
+    src: url(assets/fonts/SingleDay-Regular.ttf) format('truetype');
+}
 
 @import 'ngx-toastr/toastr';
 
