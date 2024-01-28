@@ -1,10 +1,10 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/6epMQcoo)
-# Angular : rendu n°2
-Repository où déposer le projet n°2 Angular
+# Angular : rendu final
+Repository où déposer le projet Final en binôme Angular
 
-### Nom[^1] : TAKI EDINE  
+### Nom[^1] : TAKI EDINE , GHOUL
 
-### Prénom[^2] : Marouane
+### Prénom[^2] : Marouane , Mohamed
 
 ## A faire[^3]
 - [x] Suivre le cours jusqu'à la page 180
