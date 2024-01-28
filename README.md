@@ -8,6 +8,7 @@ Repository où déposer le projet Final en binôme Angular
 
 ## Les liens : 
 - Lien vers le front : https://app-miage-assignments.netlify.app/
+- Lien git du Backend : https://github.com/Colompykos/Back-End-M1Miage2023_2024
 - Lien pour la vidéo : https://www.dropbox.com/scl/fi/wvqafvh6wi6jn0m9t5t30/App-assignments.mp4?rlkey=3hhbqj9x77qjk14yl6nh2nmi8&dl=0
 
 ## A faire[^3]
