@@ -16,10 +16,10 @@ Repository où déposer le projet Final en binôme Angular
 - [x] Ajout des 1000 assignments.
 - [x] Intégration toolbar et navbar.
 - [x] Droit d'acces user, admin, non connecté.
-- [x] Identification par **login/password** avec authentification a l'aide de Json Web Tokens (Avancée ++)
-  - Avec creation de compte(Sign up) et connexion(Log in).
+- [x] Identification par **login/password** avec authentification a l'aide de Json Web Tokens **(Avancée ++)**
+  - **Avec creation de compte(Sign up) et connexion(Log in).**
 - [x] Ajout des details assignements : Matieres, Auteurs, Notes, Image professeur et Remarques.
-- [x] Ajout de collection Matieres et Users dans le Backend (Approche Avancée).  
+- [x] **Ajout de collection Matieres et Users dans le Backend (Approche Avancée).**  
 - [x] Gestion des droits :
   - L'admin peut éditer, ajouté et supprimer les assignment.
   - Le user peut voir le détail des assignment et ajouté un assignement.
@@ -29,6 +29,6 @@ Repository où déposer le projet Final en binôme Angular
 - [x] Choix fixe des matieres dans les formulaire d'ajout et d'édition.
 - [x] Ajout de filtre rendu/non rendu et ajout d'une barre de recherche.
 - [x] Ajout d'un formulaire steper pour l'ajout d'un assignment.
-- [x] Ajout de notification a chaque action.
+- [x] **Ajout de notification à chaque action.**
 
 Démonstration et résumé des fonctionnalité dans le lien de la video ci-dessus.
